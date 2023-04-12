@@ -1,15 +1,15 @@
 [![maintenance-status: passively-maintained (as of 2022-10-01)](https://img.shields.io/badge/maintenance--status-passively--maintained_%28as_of_2022--10--01%29-forestgreen)](https://gist.github.com/rusty-snake/574a91f1df9f97ec77ca308d6d731e29)
 ![dependabot status](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=Dependabot)
 
-[![Build](https://img.shields.io/github/actions/workflow/status/pentamassiv/gtk4-layer-shell-gir/build_x86.yaml?branch=main)](https://github.com/pentamassiv/gtk4-layer-shell-gir/actions/workflows/build_x86.yaml)
+[![Build](https://img.shields.io/github/actions/workflow/status/pentamassiv/gtk4-layer-shell-gir/build.yaml?branch=main)](https://github.com/pentamassiv/gtk4-layer-shell-gir/actions/workflows/build.yaml)
 
 gtk4-layer-shell-sys:
 [![Crate](https://img.shields.io/crates/v/gtk4-layer-shell-sys.svg)](https://crates.io/crates/gtk4-layer-shell-sys)
 [![docs.rs](https://docs.rs/gtk4-layer-shell-sys/badge.svg)](https://docs.rs/gtk4-layer-shell-sys)
-[![dependency status](https://deps.rs/crate/gtk4-layer-shell-sys/0.6.0/status.svg)](https://deps.rs/crate/gtk4-layer-shell-sys/0.6.0)
+[![dependency status](https://deps.rs/crate/gtk4-layer-shell-sys/0.0.1/status.svg)](https://deps.rs/crate/gtk4-layer-shell-sys/0.0.1)
 
 # gtk4-layer-shell-sys
-These are the unsafe FFI bindings for [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell). They were automatically generated from its [.gir file](../Gtk4LayerShell-1.0.gir). Unfortunately this crate is GTK3 only because upstream does not yet support GTK4 (https://github.com/wmww/gtk4-layer-shell/issues/37).
+These are the unsafe FFI bindings for [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell). They were automatically generated from its [.gir file](../Gtk4LayerShell-1.0.gir). This crate is GTK4 only. Checkout [gtk-layer-shell-sys](https://crates.io/crates/gtk-layer-shell-sys) if you want the GTK3 version.
 
 ## Usage
 These are the unsafe bindings. You most likely want to use the safe [wrapper](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell).
@@ -17,9 +17,10 @@ These are the unsafe bindings. You most likely want to use the safe [wrapper](ht
 ## Generating the bindings
 Generating the bindings yourself is not necessary to be able to use it. If you want to do it anyways, here are the steps you can follow to generate the bindings yourself.
 
-You need to have Rust, and Gtk3 installed. Clone the repository AND the submodule "gir".
+You need to have Rust, and Gtk4 and gtk4-layer-shell installed. Clone the repository AND the submodule "gir".
 ```bash
 git clone --recurse-submodules -j8 https://github.com/pentamassiv/gtk4-layer-shell-gir.git
+git pull --recurse-submodules
 cd ./gtk4-layer-shell-gir
 ```
 Then you need to install gir.
@@ -39,7 +40,7 @@ cargo test     # Test the created bindings
 cd ..
 ```
 
-There should not have been any errors. You should now continue and generate the [safe wrapper](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell/README.md#generating-the-wrapper).
+There should not have been any errors. If you do encounter an error complaining about the `dox` feature not being available for the `gtk4` crate, you have to change the name of the `gtk4` crate in the `Cargo.toml` file. You should now continue and generate the [safe wrapper](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell/README.md#generating-the-wrapper).
 If you want to learn more about gir, have a look at its [repo](https://github.com/gtk-rs/gir) or its [book](https://gtk-rs.org/gir/book/).
 
 ## Maintenance status

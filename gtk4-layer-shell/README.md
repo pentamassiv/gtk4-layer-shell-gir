@@ -1,15 +1,15 @@
 [![maintenance-status: passively-maintained (as of 2022-10-01)](https://img.shields.io/badge/maintenance--status-passively--maintained_%28as_of_2022--10--01%29-forestgreen)](https://gist.github.com/rusty-snake/574a91f1df9f97ec77ca308d6d731e29)
 ![dependabot status](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=Dependabot)
 
-[![Build](https://img.shields.io/github/actions/workflow/status/pentamassiv/gtk4-layer-shell-gir/build_x86.yaml?branch=main)](https://github.com/pentamassiv/gtk4-layer-shell-gir/actions/workflows/build_x86.yaml)
+[![Build](https://img.shields.io/github/actions/workflow/status/pentamassiv/gtk4-layer-shell-gir/build.yaml?branch=main)](https://github.com/pentamassiv/gtk4-layer-shell-gir/actions/workflows/build.yaml)
 
 gtk4-layer-shell:
 [![Crate](https://img.shields.io/crates/v/gtk4-layer-shell.svg)](https://crates.io/crates/gtk4-layer-shell)
 [![docs.rs](https://docs.rs/gtk4-layer-shell/badge.svg)](https://docs.rs/gtk4-layer-shell)
-[![dependency status](https://deps.rs/crate/gtk4-layer-shell/0.6.1/status.svg)](https://deps.rs/crate/gtk4-layer-shell/0.6.1)
+[![dependency status](https://deps.rs/crate/gtk4-layer-shell/0.0.1/status.svg)](https://deps.rs/crate/gtk4-layer-shell/0.0.1)
 
 # gtk4-layer-shell
-This is the safe wrapper for [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell), automatically generated from its [.gir file](../Gtk4LayerShell-1.0.gir). The unsafe bindings can be found [here](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell-sys). Unfortunately this crate is GTK3 only because upstream does not yet support GTK4 (https://github.com/wmww/gtk4-layer-shell/issues/37).
+This is the safe wrapper for [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell), automatically generated from its [.gir file](../Gtk4LayerShell-1.0.gir). The unsafe bindings can be found [here](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell-sys). This crate is GTK4 only. Checkout [gtk-layer-shell](https://crates.io/crates/gtk-layer-shell) if you want the GTK3 version.
 
 ## Usage
 Have a look at the [simple example](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell/examples/simple-example.rs) to see how the bindings can be used. It works analogous to the original.
