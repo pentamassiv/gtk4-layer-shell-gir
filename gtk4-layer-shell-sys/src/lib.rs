@@ -8,6 +8,10 @@
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
 
+mod manual;
+
+pub use manual::*;
+
 #[allow(unused_imports)]
 use libc::{c_int, c_char, c_uchar, c_float, c_uint, c_double,
     c_short, c_ushort, c_long, c_ulong,

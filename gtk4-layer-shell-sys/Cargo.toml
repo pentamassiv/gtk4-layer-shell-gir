@@ -1,6 +1,13 @@
 [package]
 name = "gtk4-layer-shell-sys"
 version = "0.0.1"
+authors = ["pentamassiv <pentamassiv@posteo.de>"]
+license = "MIT"
+description = "Unsave gir-generated FFI bindings for gtk4-layer-shell"
+repository = "https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell-sys"
+documentation = "https://docs.rs/gtk4-layer-shell-sys/"
+keywords = ["gtk4", "gtk4-layer-shell", "wayland", "FFI", "unsafe"]
+categories = ["external-ffi-bindings", "gui"]
 edition = "2021"
 build = "build.rs"
 
@@ -17,6 +24,18 @@ name = "gtk4_layer_shell_sys"
 [dependencies]
 libc = "0.2"
 
+[dependencies.glib]
+package = "glib-sys"
+version = "0.17"
+
+[dependencies.gdk]
+package = "gdk4-sys"
+version = "0.6"
+
+[dependencies.gtk]
+package = "gtk4-sys"
+version = "0.6"
+
 [build-dependencies]
 system-deps = "6"
 
@@ -25,4 +44,4 @@ shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
-dox = []
+dox = ["glib/dox", "gdk/dox", "gtk/dox"]

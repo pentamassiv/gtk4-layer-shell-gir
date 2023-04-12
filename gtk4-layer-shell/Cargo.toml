@@ -1,8 +1,26 @@
 [package]
 name = "gtk4-layer-shell"
 version = "0.1.0"
+authors = ["pentamassiv <pentamassiv@posteo.de>"]
+license = "MIT"
+description = "Save gir-generated wrapper for gtk4-layer-shell"
+repository = "https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell"
+documentation = "https://docs.rs/gtk4-layer-shell/"
+keywords = ["gtk4", "gtk4-layer-shell", "wayland", "gir", "wrapper"]
+categories = ["api-bindings", "gui"]
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[package.metadata.docs.rs]
+features = ["dox"]
+
+[features]
+dox = ["glib/dox", "gdk/dox", "gtk/dox", "ffi/dox"]
 
 [dependencies]
+libc = "0.2"
+bitflags = "1.0"
+glib = "0.17"
+glib-sys = "0.17"
+gdk = { package = "gdk4", version = "0.6" }
+gtk = { package = "gtk4", version = "0.6" }
+ffi = { package = "gtk4-layer-shell-sys", path = "../gtk4-layer-shell-sys" }

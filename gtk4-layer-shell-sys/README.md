@@ -28,10 +28,11 @@ cd gir
 cargo install --path .
 cd ..
 ```
-If you regenerate the binding, because you have a new version of the GtkLayerShell gir file, copy it into the [gir files](../gir-files) folder.
+If you regenerate the binding, because you have a new version of the Gtk4LayerShell gir file, copy it into the [gir files](../gir-files) folder.
 Now you can generate, build and test the bindings.
 ```bash
-cd gtk4-layer-shell-sys
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+cd gtk4-layer-shell-sys # Needed when the lib is built from source
 gir -o .       # Regenerate the bindings
 cargo build    # Build the created bindings
 cargo test     # Test the created bindings
