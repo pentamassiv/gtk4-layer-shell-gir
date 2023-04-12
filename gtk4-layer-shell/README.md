@@ -6,10 +6,15 @@
 gtk4-layer-shell:
 [![Crate](https://img.shields.io/crates/v/gtk4-layer-shell.svg)](https://crates.io/crates/gtk4-layer-shell)
 [![docs.rs](https://docs.rs/gtk4-layer-shell/badge.svg)](https://docs.rs/gtk4-layer-shell)
-[![dependency status](https://deps.rs/crate/gtk4-layer-shell/0.0.2/status.svg)](https://deps.rs/crate/gtk4-layer-shell/0.0.2)
+[![dependency status](https://deps.rs/crate/gtk4-layer-shell/0.0.3/status.svg)](https://deps.rs/crate/gtk4-layer-shell/0.0.3)
 
 # gtk4-layer-shell
-This is the safe wrapper for [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell), automatically generated from its [.gir file](../Gtk4LayerShell-1.0.gir). The unsafe bindings can be found [here](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell-sys). This crate is GTK4 only. Checkout [gtk-layer-shell](https://crates.io/crates/gtk-layer-shell) if you want the GTK3 version.
+This is the safe wrapper for [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell), automatically generated from its [.gir file](../Gtk4LayerShell-1.0.gir). The unsafe bindings can be found [here](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell-sys). You need to have gtk4-layer-shell installed on your system to use this crate. Because it is new, you probably have to [build it from source](https://github.com/wmww/gtk4-layer-shell#building-from-source). If you did that, you might also have to set the following two environment variables:
+```bash
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+export LD_LIBRARY_PATH=/usr/local/lib
+```
+This crate is GTK4 only. Checkout [gtk-layer-shell](https://crates.io/crates/gtk-layer-shell) if you want the GTK3 version.
 
 ## Usage
 Have a look at the [simple example](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell/examples/simple-example.rs) to see how the bindings can be used. It works analogous to the original.
