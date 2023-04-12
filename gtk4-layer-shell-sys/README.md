@@ -12,7 +12,7 @@ gtk4-layer-shell-sys:
 These are the unsafe FFI bindings for [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell). They were automatically generated from its [.gir file](../Gtk4LayerShell-1.0.gir). Unfortunately this crate is GTK3 only because upstream does not yet support GTK4 (https://github.com/wmww/gtk4-layer-shell/issues/37).
 
 ## Usage
-These are the unsafe bindings. You most likely want to use the safe [wrapper](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell). If you are sure you want the unsafe bindings, you can use the features to select the version of gtk4-layer-shell. Default currently is v0_6.
+These are the unsafe bindings. You most likely want to use the safe [wrapper](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell).
 
 ## Generating the bindings
 Generating the bindings yourself is not necessary to be able to use it. If you want to do it anyways, here are the steps you can follow to generate the bindings yourself.

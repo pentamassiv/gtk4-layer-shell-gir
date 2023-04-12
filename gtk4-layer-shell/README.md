@@ -12,7 +12,7 @@ gtk4-layer-shell:
 This is the safe wrapper for [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell), automatically generated from its [.gir file](../Gtk4LayerShell-1.0.gir). The unsafe bindings can be found [here](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell-sys). Unfortunately this crate is GTK3 only because upstream does not yet support GTK4 (https://github.com/wmww/gtk4-layer-shell/issues/37).
 
 ## Usage
-Have a look at the [simple example](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell/examples/simple-example.rs) to see how the bindings can be used. It works analogous to the original. You can use the features to select the version of gtk4-layer-shell. Currently v0_6 is the default.
+Have a look at the [simple example](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell/examples/simple-example.rs) to see how the bindings can be used. It works analogous to the original.
 
 ## Generating the wrapper
 Generating the wrapper yourself is not necessary to be able to use it. You can just use the version published on crates.io. If you want to do it anyways, you need to start by [generating the unsafe bindings](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell-sys/README.md#generating-the-bindings). Follow the guide on how to do that and come back here.
