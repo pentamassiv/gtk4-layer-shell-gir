@@ -1,0 +1,40 @@
+name: "Install_deps"
+description: "Installs the dependencies, checks out the code and sets up caching"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Update repos
+      shell: bash
+      run: sudo apt-get update
+
+    - name: Hold back grub-efi-amd64-signed # TODO: Remove temporary fix
+      shell: bash
+      run: sudo apt-mark hold grub-efi-amd64-signed
+      
+    - name: Upgrade system
+      shell: bash
+      run: sudo apt-get upgrade -y
+    - name: Install git and GTK3
+      shell: bash
+      run: sudo apt-get install -y git tar libgtk-3-dev # libgtk4-layer-shell-dev
+    - name: Build gtk4-layer-shell while it is not published on ubuntu
+      shell: bash
+      run: |
+          sudo apt install meson libwayland-dev libgtk-4-dev gobject-introspection libgirepository1.0-dev gtk-doc-tools valac
+          git clone https://github.com/wmww/gtk4-layer-shell.git
+          cd gtk4-layer-shell
+          meson build -Dexamples=true -Ddocs=true -Dtests=true
+          ninja -C build
+          sudo ninja -C build install
+          sudo ldconfig
+    - uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          gtk4-layer-shell/target/
+          gtk4-layer-shell-sys/target/
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}

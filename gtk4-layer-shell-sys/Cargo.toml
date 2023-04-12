@@ -1,0 +1,28 @@
+[package]
+name = "gtk4-layer-shell-sys"
+version = "0.0.1"
+edition = "2021"
+build = "build.rs"
+
+[package.metadata.system-deps.gtk4_layer_shell_0]
+name = "gtk4-layer-shell-0"
+version = "1"
+
+[package.metadata.docs.rs]
+features = ["dox"]
+
+[lib]
+name = "gtk4_layer_shell_sys"
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+system-deps = "6"
+
+[dev-dependencies]
+shell-words = "1.0.0"
+tempfile = "3"
+
+[features]
+dox = []

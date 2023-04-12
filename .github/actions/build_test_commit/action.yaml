@@ -1,0 +1,67 @@
+name: "Build, test, commit"
+description: "Builds the code, runs the tests and commits the changes"
+inputs:
+  commit_message:
+    description: "The commit message that will be used"
+    required: false
+    type: string
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build and test the sys crate
+      working-directory: ./gtk4-layer-shell-sys
+      shell: bash
+      run: |
+        ls
+        export PATH=$PATH:/github/home/.cargo/bin
+        # Test if there is any output to the gir command
+        if [[ $(gir -o . |& wc -l) -ne 0 ]]; then 
+          echo "gir -o failed"
+          exit 1
+        fi
+        cargo update
+        cargo build --verbose --all-features
+        cargo test --verbose
+        cargo doc --all-features
+    # Exit with an error if there is any output of the gir commands, because then there might be some wrongly generated code or errors
+    - name: Build and test the wrapper crate
+      shell: bash
+      working-directory: ./gtk4-layer-shell/
+      run: |
+        ls
+        export PATH=$PATH:/github/home/.cargo/bin
+        if [[ $(gir -o . |& wc -l) -ne 0 ]]; then
+          echo "gir -o failed"
+          exit 1
+        fi
+        if [[ $(gir -o . -m not_bound |& wc -l) -ne 0 ]]; then
+          echo "gir not_bound failed"
+          exit 1
+        fi
+        # Check if the docs were generated without a warning
+        if [[ $(gir -c Gir.toml --doc-target-path docs.md -m doc |& wc -l) -ne 0 ]]; then
+          echo "gir docs failed"
+          exit 1
+        fi
+        cargo install rustdoc-stripper --force
+        rustdoc-stripper -s -n
+        rustdoc-stripper -g -o docs.md
+        cargo update
+        cargo build --verbose --all-features
+        cargo test --verbose --features v0_6
+        cargo doc --all-features
+    - name: Build the example
+      working-directory: ./gtk4-layer-shell/
+      shell: bash
+      run: cargo build --example simple-example
+    - name: Count the number of files other than the versions.txt files, which were changed
+      id: changed_files
+      shell: bash
+      if: ${{ inputs.commit_message != '' }}
+      run: echo "NO_CHANGED_FILES=$(git diff --name-only -- . ':(exclude)gtk4-layer-shell/src/auto/versions.txt' ':(exclude)gtk4-layer-shell-sys/src/auto/versions.txt' ':(exclude)gir' | wc -l)" >> $GITHUB_OUTPUT
+    - name: Commit code changes to main
+      if: inputs.commit_message != '' && steps.changed_files.outputs.NO_CHANGED_FILES != '0'
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: ${{ inputs.commit_message }}

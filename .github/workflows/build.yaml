@@ -1,0 +1,35 @@
+name: "Build x86"
+
+permissions:
+  contents: read
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "true"
+      - uses: ./.github/actions/install_deps
+      - uses: dtolnay/rust-toolchain@master
+        with:
+            toolchain: nightly
+            components: rustfmt, clippy
+      - name: Install gir
+        working-directory: ./gir
+        run: |
+          ls
+          export PATH=$PATH:/github/home/.cargo/bin
+          cargo install --force --path .
+      - uses: ./.github/actions/build_test_commit
