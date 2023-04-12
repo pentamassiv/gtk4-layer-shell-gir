@@ -1,6 +1,6 @@
 [package]
 name = "gtk4-layer-shell"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["pentamassiv <pentamassiv@posteo.de>"]
 license = "MIT"
 description = "Save gir-generated wrapper for gtk4-layer-shell"
@@ -18,7 +18,7 @@ dox = ["glib/dox", "gdk/dox", "gtk/dox", "ffi/dox"]
 
 [dependencies]
 libc = "0.2"
-bitflags = "1.0"
+bitflags = "2.0"
 glib = "0.17"
 glib-sys = "0.17"
 gdk = { package = "gdk4", version = "0.6" }
