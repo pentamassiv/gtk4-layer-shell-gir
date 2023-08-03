@@ -25,7 +25,7 @@ runs:
           cd ..
           git clone https://github.com/wmww/gtk4-layer-shell.git
           cd gtk4-layer-shell
-          meson build -Dexamples=true -Ddocs=true -Dtests=true
+          meson setup -Dexamples=true -Ddocs=true -Dtests=true build
           ninja -C build
           sudo ninja -C build install
           sudo ldconfig
