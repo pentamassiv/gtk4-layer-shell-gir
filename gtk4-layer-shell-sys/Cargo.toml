@@ -16,7 +16,7 @@ name = "gtk4-layer-shell-0"
 version = "1"
 
 [package.metadata.docs.rs]
-features = ["dox"]
+features = []
 
 [lib]
 name = "gtk4_layer_shell_sys"

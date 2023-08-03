@@ -14,7 +14,7 @@ edition = "2021"
 features = ["dox"]
 
 [features]
-dox = ["glib/dox", "gdk/dox", "gtk/dox", "ffi/dox"]
+dox = ["glib/dox", "gdk/dox", "gtk/dox"]
 
 [dependencies]
 libc = "0.2"

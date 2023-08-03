@@ -3,7 +3,7 @@
 // from ../gir-files
 // DO NOT EDIT
 
-#![cfg(target_os = "linux")]
+#![cfg(unix)]
 
 use gtk4_layer_shell_sys::*;
 use std::mem::{align_of, size_of};
@@ -89,7 +89,9 @@ struct Layout {
 
 #[derive(Copy, Clone, Debug, Default, Eq, PartialEq)]
 struct Results {
+    /// Number of successfully completed tests.
     passed: usize,
+    /// Total number of failed tests (including those that failed to compile).
     failed: usize,
 }
 
