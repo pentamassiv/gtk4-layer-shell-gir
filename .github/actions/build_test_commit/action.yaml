@@ -31,4 +31,13 @@ runs:
       working-directory: ./gtk4-layer-shell/
       shell: bash
       run: cargo build --example simple-example
-      
+    - name: Count the number of files other than the versions.txt files, which were changed
+      id: changed_files
+      shell: bash
+      if: ${{ inputs.commit_message != '' }}
+      run: echo "NO_CHANGED_FILES=$(git diff --name-only -- . ':(exclude)gtk4-layer-shell/src/auto/versions.txt' ':(exclude)gtk4-layer-shell-sys/src/auto/versions.txt' ':(exclude)gir' | wc -l)" >> $GITHUB_OUTPUT
+    - name: Commit code changes to main
+      if: inputs.commit_message != '' && steps.changed_files.outputs.NO_CHANGED_FILES != '0'
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: ${{ inputs.commit_message }}
