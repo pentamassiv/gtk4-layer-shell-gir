@@ -9,6 +9,12 @@ updates:
 
   # Maintain dependencies for cargo
   - package-ecosystem: "cargo"
-    directory: "/"
+    directory: "/gtk4-layer-shell"
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for cargo
+  - package-ecosystem: "cargo"
+    directory: "/gtk4-layer-shell-sys"
     schedule:
       interval: "daily"
