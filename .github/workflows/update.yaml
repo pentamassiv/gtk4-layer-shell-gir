@@ -1,0 +1,51 @@
+name: "Update gir and all gir-files"
+
+permissions:
+  contents: write
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "true"
+      - uses: ./.github/actions/install_deps
+      - uses: dtolnay/rust-toolchain@master
+        with:
+            toolchain: nightly
+            components: rustfmt, clippy
+      ## Update the submodules
+      - name: Update submodules
+        run: |
+          git submodule update --remote
+      ## Update the gir submodule and install the new version
+      - name: Install gir
+        working-directory: ./gir
+        run: |
+          ls
+          export PATH=$PATH:/github/home/.cargo/bin
+          cargo install --force --path .
+      - uses: ./.github/actions/build_test_commit
+        with:
+          commit_message: Automatically updated the version of gir
+      ## Check the version of the gtk4-layer-shell package
+      ## Aborts if there was a major version bump
+      ##- name: Get the first character of the version of the gtk4-layer-shell package to detect mayor version bumps
+      ##  id: major_version_check
+      ##  run: |
+      ##    echo "MAJOR_VERSION=$(dpkg -s libgtk4-layer-shell-dev | grep Version | sed 's/Version. 0.//' | cut -c1-1)" >> $GITHUB_OUTPUT
+      ##    echo "Version: ${{ steps.major_version_check.outputs.MAJOR_VERSION }}"
+      ##- name: Fail if mayor version was increased
+      ##  if: steps.major_version_check.outputs.MAJOR_VERSION != '1'
+      ##  run: exit 1
+      ##- uses: ./.github/actions/build_test_commit
+      ##  with:
+      ##    commit_message: Automatically updated the version of gtk-layer-shell, the gir files or gir
