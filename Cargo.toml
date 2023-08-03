@@ -1,3 +1,4 @@
 [workspace]
 members = ["gtk4-layer-shell", "gtk4-layer-shell-sys"]
 exclude = ["gir"]
+resolver = "2"
