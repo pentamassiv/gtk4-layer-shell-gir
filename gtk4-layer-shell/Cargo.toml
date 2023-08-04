@@ -26,5 +26,5 @@ gtk = { package = "gtk4", version = "0.6" }
 ffi = { package = "gtk4-layer-shell-sys", path = "../gtk4-layer-shell-sys", version = "0.0.2" }
 
 [dev-dependencies]
-gio = "0.17"
+gio = "0.18"
 libadwaita = "0.4"
