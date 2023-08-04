@@ -27,4 +27,4 @@ ffi = { package = "gtk4-layer-shell-sys", path = "../gtk4-layer-shell-sys", vers
 
 [dev-dependencies]
 gio = "0.17"
-libadwaita = "0.4"
+libadwaita = "0.5"
