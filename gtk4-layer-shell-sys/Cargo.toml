@@ -1,6 +1,6 @@
 [package]
 name = "gtk4-layer-shell-sys"
-version = "0.0.2"
+version = "0.1.0"
 authors = ["pentamassiv <pentamassiv@posteo.de>"]
 license = "MIT"
 description = "Unsave gir-generated FFI bindings for gtk4-layer-shell"
@@ -26,15 +26,15 @@ libc = "0.2"
 
 [dependencies.glib]
 package = "glib-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.gdk]
 package = "gdk4-sys"
-version = "0.6"
+version = "0.7"
 
 [dependencies.gtk]
 package = "gtk4-sys"
-version = "0.6"
+version = "0.7"
 
 [build-dependencies]
 system-deps = "6"
@@ -44,4 +44,3 @@ shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
-dox = ["glib/dox", "gdk/dox", "gtk/dox"]
