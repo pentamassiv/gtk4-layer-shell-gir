@@ -16,7 +16,9 @@ name = "gtk4-layer-shell-0"
 version = "1"
 
 [package.metadata.docs.rs]
-features = []
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs"]
 
 [lib]
 name = "gtk4_layer_shell_sys"
