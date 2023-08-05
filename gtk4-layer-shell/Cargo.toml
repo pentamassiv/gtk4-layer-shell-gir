@@ -22,10 +22,13 @@ libc = "0.2"
 bitflags = "2.0"
 glib = "0.18"
 glib-sys = "0.18"
-gdk = { package = "gdk4", version = "0.7", features = ["gl"] }
+gdk = { package = "gdk4", version = "0.7" }
 gtk = { package = "gtk4", version = "0.7" }
 ffi = { package = "gtk4-layer-shell-sys", path = "../gtk4-layer-shell-sys", version = "0.1" }
 
 [dev-dependencies]
 gio = "0.18"
 libadwaita = "0.5"
+
+[target.'cfg(docsrs)'.dependencies]
+gdk = { package = "gdk4", version = "0.7", features = ["gl"] }
