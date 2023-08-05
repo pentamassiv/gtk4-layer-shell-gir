@@ -31,4 +31,4 @@ gio = "0.18"
 libadwaita = "0.5"
 
 [target.'cfg(docsrs)'.dependencies]
-gdk = { package = "gdk4", version = "0.7", features = "gl" }
+gdk = { package = "gdk4", version = "0.7", features = ["gl"] }
