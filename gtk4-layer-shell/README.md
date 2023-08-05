@@ -6,7 +6,7 @@
 gtk4-layer-shell:
 [![Crate](https://img.shields.io/crates/v/gtk4-layer-shell.svg)](https://crates.io/crates/gtk4-layer-shell)
 [![docs.rs](https://docs.rs/gtk4-layer-shell/badge.svg)](https://docs.rs/gtk4-layer-shell)
-[![dependency status](https://deps.rs/crate/gtk4-layer-shell/0.1.3/status.svg)](https://deps.rs/crate/gtk4-layer-shell/0.1.3)
+[![dependency status](https://deps.rs/crate/gtk4-layer-shell/0.1.4/status.svg)](https://deps.rs/crate/gtk4-layer-shell/0.1.4)
 
 # gtk4-layer-shell
 This is the safe wrapper for [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell), automatically generated from its [.gir file](../Gtk4LayerShell-1.0.gir). The unsafe bindings can be found [here](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell-sys). You need to have gtk4-layer-shell installed on your system to use this crate. Because it is new, you probably have to [build it from source](https://github.com/wmww/gtk4-layer-shell#building-from-source). If you did that, you might also have to set the following two environment variables:
