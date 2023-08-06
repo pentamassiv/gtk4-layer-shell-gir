@@ -24,11 +24,6 @@ jobs:
         with:
             toolchain: nightly
             components: rustfmt, clippy
-      - name: Update subtrees
-        run: |
-          git subtree pull --prefix gir https://github.com/gtk-rs/gir.git master --squash
-          git subtree pull --prefix gir-files https://github.com/gtk-rs/gir-files.git master --squash
-          
       - name: Export environment variables
         run: |
           export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
