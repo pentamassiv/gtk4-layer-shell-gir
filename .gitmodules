@@ -2,9 +2,7 @@
 	path = gir
 	url = https://github.com/gtk-rs/gir
 	branch = master
-	update = merge
 [submodule "gir-files"]
 	path = gir-files
 	url = git@github.com:gtk-rs/gir-files.git
 	branch = master
-	update = merge

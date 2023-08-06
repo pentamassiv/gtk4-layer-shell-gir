@@ -25,8 +25,7 @@ jobs:
       ## Update the submodules
       - name: Update submodules
         run: |
-          git config pull.rebase false
-          git submodule update --remote
+          git submodule foreach git pull
       ## Update the gir submodule and install the new version
       - name: Install gir
         working-directory: ./gir

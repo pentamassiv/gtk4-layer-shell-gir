@@ -28,8 +28,7 @@ jobs:
             components: rustfmt, clippy
       - name: Update submodules
         run: |
-          git config pull.rebase false
-          git submodule update --remote
+          git submodule foreach git pull
       - name: Export environment variables
         run: |
           export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
