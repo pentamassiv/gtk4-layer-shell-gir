@@ -10,6 +10,8 @@ keywords = ["gtk4", "gtk4-layer-shell", "wayland", "gir", "wrapper"]
 categories = ["api-bindings", "gui"]
 edition = "2021"
 
+exclude = ["examples", "Gir.toml"]
+
 [package.metadata.docs.rs]
 all-features = true
 rustc-args = ["--cfg", "docsrs"]
