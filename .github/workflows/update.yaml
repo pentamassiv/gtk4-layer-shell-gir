@@ -15,18 +15,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: "true"
       - uses: ./.github/actions/install_deps
       - uses: dtolnay/rust-toolchain@master
         with:
             toolchain: nightly
             components: rustfmt, clippy
-      ## Update the submodules
-      - name: Update submodules
+      ## Update the subtrees
+      - name: Update subtrees
         run: |
-          git submodule foreach git pull
-      ## Update the gir submodule and install the new version
+          git subtree pull --prefix gir https://github.com/gtk-rs/gir.git master --squash
+          git subtree pull --prefix gir-files https://github.com/gtk-rs/gir-files.git master --squash
+      ## Install the new version of gir
       - name: Install gir
         working-directory: ./gir
         run: |
