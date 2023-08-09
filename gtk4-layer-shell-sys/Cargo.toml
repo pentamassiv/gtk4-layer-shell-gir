@@ -11,8 +11,6 @@ categories = ["external-ffi-bindings", "gui"]
 edition = "2021"
 build = "build.rs"
 
-exclude = ["tests", "Gir.toml"]
-
 [package.metadata.system-deps.gtk4_layer_shell_0]
 name = "gtk4-layer-shell-0"
 version = "1"
