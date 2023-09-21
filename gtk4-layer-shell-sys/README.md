@@ -44,7 +44,7 @@ cargo test     # Test the created bindings
 cd ..
 ```
 
-There should not have been any errors. If you do encounter an error complaining about the `dox` feature not being available for the `gtk4` crate, you have to change the name of the `gtk4` crate in the `Cargo.toml` file. You should now continue and generate the [safe wrapper](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell/README.md#generating-the-wrapper).
+There should not have been any errors. You should now continue and generate the [safe wrapper](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell/README.md#generating-the-wrapper).
 If you want to learn more about gir, have a look at its [repo](https://github.com/gtk-rs/gir) or its [book](https://gtk-rs.org/gir/book/).
 
 ## Maintenance status

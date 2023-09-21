@@ -6,6 +6,7 @@ use libadwaita as adw;
 use adw::prelude::*;
 use adw::{ActionRow, ApplicationWindow, HeaderBar};
 use gtk::{Application, Box, ListBox, Orientation};
+use gtk4_layer_shell::{Edge, Layer, LayerShell};
 
 fn main() {
     let application = Application::builder()
@@ -58,24 +59,24 @@ fn main() {
         // Part that is specific to use gtk4-layer-shell begins
 
         // Before the window is first realized, set it up to be a layer surface
-        gtk4_layer_shell::init_for_window(&window);
+        window.init_layer_shell();
 
         // Display above normal windows
-        gtk4_layer_shell::set_layer(&window, gtk4_layer_shell::Layer::Overlay);
+        window.set_layer(Layer::Overlay);
 
         // Push other windows out of the way
-        gtk4_layer_shell::auto_exclusive_zone_enable(&window);
+        window.auto_exclusive_zone_enable();
 
         // Anchors are if the window is pinned to each edge of the output
         let anchors = [
-            (gtk4_layer_shell::Edge::Left, true),
-            (gtk4_layer_shell::Edge::Right, true),
-            (gtk4_layer_shell::Edge::Top, false),
-            (gtk4_layer_shell::Edge::Bottom, true),
+            (Edge::Left, true),
+            (Edge::Right, true),
+            (Edge::Top, false),
+            (Edge::Bottom, true),
         ];
 
         for (anchor, state) in anchors {
-            gtk4_layer_shell::set_anchor(&window, anchor, state);
+            window.set_anchor(anchor, state);
         }
         // Part that is specific to use gtk4-layer-shell ends
         // #################################
