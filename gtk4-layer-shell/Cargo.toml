@@ -1,6 +1,6 @@
 [package]
 name = "gtk4-layer-shell"
-version = "0.1.5"
+version = "0.2.0"
 authors = ["pentamassiv <pentamassiv@posteo.de>"]
 license = "MIT"
 description = "Save gir-generated wrapper for gtk4-layer-shell"

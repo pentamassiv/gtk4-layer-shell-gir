@@ -6,7 +6,7 @@
 gtk4-layer-shell:
 [![Crate](https://img.shields.io/crates/v/gtk4-layer-shell.svg)](https://crates.io/crates/gtk4-layer-shell)
 [![docs.rs](https://docs.rs/gtk4-layer-shell/badge.svg)](https://docs.rs/gtk4-layer-shell)
-[![dependency status](https://deps.rs/crate/gtk4-layer-shell/0.1.5/status.svg)](https://deps.rs/crate/gtk4-layer-shell/0.1.5)
+[![dependency status](https://deps.rs/crate/gtk4-layer-shell/0.2.0/status.svg)](https://deps.rs/crate/gtk4-layer-shell/0.2.0)
 
 gtk4-layer-shell-sys:
 [![Crate](https://img.shields.io/crates/v/gtk4-layer-shell-sys.svg)](https://crates.io/crates/gtk4-layer-shell-sys)
