@@ -27,10 +27,10 @@ runs:
         cargo build --verbose --all-features
         cargo test --verbose
         cargo doc --all-features
-    - name: Build the example
+    - name: Build the examples
       working-directory: ./gtk4-layer-shell/
       shell: bash
-      run: cargo build --example simple-example
+      run: cargo build --examples
     - name: Count the number of files other than the versions.txt files, which were changed
       id: changed_files
       shell: bash
