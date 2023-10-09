@@ -58,7 +58,7 @@ jobs:
           sed -i '0,/${{ env.CRATE_PATH }}\/${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/{s//${{ env.CRATE_PATH }}\/${{ github.event.inputs.version }}/}' ./README.md
           sed -i '0,/${{ env.CRATE_PATH }}\/${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/{s//${{ env.CRATE_PATH }}\/${{ github.event.inputs.version }}/}' ./README.md
       - name: Commit the changes to repo
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Bump version number of ${{ github.event.inputs.crate_type }} crate and publish it
       - name: Publish on crates.io
