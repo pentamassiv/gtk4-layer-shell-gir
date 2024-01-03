@@ -36,16 +36,17 @@ jobs:
       - uses: ./.github/actions/build_test_commit
         with:
           commit_message: Automatically updated the version of gir or gir-files
-      ## Check the version of the gtk-layer-shell package
+      ## TODO: Enable these checks once libgtk4-layer-shell-dev is available on Ubuntu
+      ## Check the version of the gtk4-layer-shell package
       ## Aborts if there was a major version bump
-      - name: Get the first character of the version of the gtk-layer-shell package to detect mayor version bumps
-        id: major_version_check
-        run: |
-          echo "MAJOR_VERSION=$(dpkg -s libgtk-layer-shell-dev | grep Version | sed 's/Version. 0.//' | cut -c1-1)" >> $GITHUB_OUTPUT
-          echo "Version: ${{ steps.major_version_check.outputs.MAJOR_VERSION }}"
-      - name: Fail if mayor version was increased
-        if: steps.major_version_check.outputs.MAJOR_VERSION != '7'
-        run: exit 1
+      ## - name: Get the first character of the version of the gtk4-layer-shell package to detect mayor version bumps
+      ##   id: major_version_check
+      ##   run: |
+      ##     echo "MAJOR_VERSION=$(dpkg -s libgtk4-layer-shell-dev | grep Version | sed 's/Version. 0.//' | cut -c1-1)" >> $GITHUB_OUTPUT
+      ##     echo "Version: ${{ steps.major_version_check.outputs.MAJOR_VERSION }}"
+      ## - name: Fail if mayor version was increased
+      ##   if: steps.major_version_check.outputs.MAJOR_VERSION != '1'
+      ##   run: exit 1
       - uses: ./.github/actions/build_test_commit
         with:
           commit_message: Automatically updated the version of gtk-layer-shell, the gir files or gir
