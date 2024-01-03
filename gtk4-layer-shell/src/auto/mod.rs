@@ -8,5 +8,5 @@ pub use self::enums::Edge;
 pub use self::enums::KeyboardMode;
 pub use self::enums::Layer;
 
-pub mod functions;
+pub(crate) mod functions;
 
