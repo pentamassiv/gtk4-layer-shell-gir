@@ -4,7 +4,6 @@
 // DO NOT EDIT
 
 use glib::{translate::*};
-use std::{fmt};
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 #[derive(Clone, Copy)]
@@ -29,19 +28,6 @@ pub enum Edge {
     EntryNumber,
 #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for Edge {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Edge::{}", match *self {
-            Self::Left => "Left",
-            Self::Right => "Right",
-            Self::Top => "Top",
-            Self::Bottom => "Bottom",
-            Self::EntryNumber => "EntryNumber",
-            _ => "Unknown",
-        })
-    }
 }
 
 #[doc(hidden)]
@@ -101,18 +87,6 @@ pub enum KeyboardMode {
     __Unknown(i32),
 }
 
-impl fmt::Display for KeyboardMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "KeyboardMode::{}", match *self {
-            Self::None => "None",
-            Self::Exclusive => "Exclusive",
-            Self::OnDemand => "OnDemand",
-            Self::EntryNumber => "EntryNumber",
-            _ => "Unknown",
-        })
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for KeyboardMode {
     type GlibType = ffi::GtkLayerShellKeyboardMode;
@@ -168,19 +142,6 @@ pub enum Layer {
     EntryNumber,
 #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for Layer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Layer::{}", match *self {
-            Self::Background => "Background",
-            Self::Bottom => "Bottom",
-            Self::Top => "Top",
-            Self::Overlay => "Overlay",
-            Self::EntryNumber => "EntryNumber",
-            _ => "Unknown",
-        })
-    }
 }
 
 #[doc(hidden)]
