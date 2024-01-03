@@ -14,6 +14,12 @@ runs:
       shell: bash
       run: |
         ls
+        export PATH=$PATH:/github/home/.cargo/bin
+        # Test if there is any output to the gir command
+        if [[ $(gir -o . |& wc -l) -ne 0 ]]; then 
+          echo "gir -o failed"
+          exit 1
+        fi
         cargo update
         cargo build --verbose --all-features
         cargo test --verbose
@@ -23,6 +29,24 @@ runs:
       shell: bash
       working-directory: ./gtk4-layer-shell/
       run: |
+        ls
+        export PATH=$PATH:/github/home/.cargo/bin
+        if [[ $(gir -o . |& wc -l) -ne 0 ]]; then
+          echo "gir -o failed"
+          exit 1
+        fi
+        if [[ $(gir -o . -m not_bound |& wc -l) -ne 0 ]]; then
+          echo "gir not_bound failed"
+          exit 1
+        fi
+        # Check if the docs were generated without a warning
+        if [[ $(gir -c Gir.toml --doc-target-path docs.md -m doc |& wc -l) -ne 0 ]]; then
+          echo "gir docs failed"
+          exit 1
+        fi
+        cargo install rustdoc-stripper --force
+        rustdoc-stripper -s -n
+        rustdoc-stripper -g -o docs.md
         cargo update
         cargo build --verbose --all-features
         cargo test --verbose
