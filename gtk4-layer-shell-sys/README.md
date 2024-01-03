@@ -22,9 +22,9 @@ These are the unsafe bindings. You most likely want to use the safe [wrapper](ht
 ## Generating the bindings
 Generating the bindings yourself is not necessary to be able to use it. If you want to do it anyways, here are the steps you can follow to generate the bindings yourself.
 
-You need to have Rust, and Gtk4 and gtk4-layer-shell installed. Clone the repository.
+You need to have Rust, Gtk4 and gtk4-layer-shell installed. Clone the repository AND the submodules "gir" and "gir-files".
 ```bash
-git clone -j8 https://github.com/pentamassiv/gtk4-layer-shell-gir.git
+git clone --recurse-submodules  -j8 https://github.com/pentamassiv/gtk4-layer-shell-gir.git
 cd ./gtk4-layer-shell-gir
 ```
 Then you need to install gir.
