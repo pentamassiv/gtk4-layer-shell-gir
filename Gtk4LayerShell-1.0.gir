@@ -126,7 +126,7 @@ size of the @window + relevant margin. To disable auto exclusive zone, just set 
 exclusive zone to 0 or any other fixed value.
 
 NOTE: you can control the auto exclusive zone by changing the margin on the non-anchored
-edge. This behavior is specific to gtk-layer-shell and not part of the underlying protocol</doc>
+edge. This behavior is specific to gtk4-layer-shell and not part of the underlying protocol</doc>
       <source-position filename="include/gtk4-layer-shell.h" line="295"/>
       <return-value transfer-ownership="none">
         <type name="none" c:type="void"/>
@@ -318,7 +318,7 @@ Future calls into the library may invalidate the returned string.</doc>
         <doc xml:space="preserve"
              filename="include/gtk4-layer-shell.h"
              line="168">a reference to the namespace property. If namespace is unset, returns the
-default namespace ("gtk-layer-shell"). Never returns %NULL.</doc>
+default namespace ("gtk4-layer-shell"). Never returns %NULL.</doc>
         <type name="utf8" c:type="const char*"/>
       </return-value>
       <parameters>
@@ -612,7 +612,7 @@ No one is quite sure what this is for, but it probably should be something gener
 ownership of original. If the window is currently mapped, it will get remapped so
 the change can take effect.
 
-Default is "gtk-layer-shell" (which will be used if set to %NULL)</doc>
+Default is "gtk4-layer-shell" (which will be used if set to %NULL)</doc>
       <source-position filename="include/gtk4-layer-shell.h" line="159"/>
       <return-value transfer-ownership="none">
         <type name="none" c:type="void"/>
