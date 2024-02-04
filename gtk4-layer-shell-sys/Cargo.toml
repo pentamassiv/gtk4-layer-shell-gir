@@ -26,8 +26,8 @@ name = "gtk4_layer_shell_sys"
 [dependencies]
 libc = "0.2"
 glib-sys = "0.18"
-gdk4-sys = "0.7"
-gtk4-sys = "0.7"
+gdk4-sys = "0.8"
+gtk4-sys = "0.8"
 
 [build-dependencies]
 system-deps = "6"
