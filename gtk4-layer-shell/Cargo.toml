@@ -1,16 +1,16 @@
 [package]
 name = "gtk4-layer-shell"
 version = "0.2.0"
-authors = ["pentamassiv <pentamassiv@posteo.de>"]
-license = "MIT"
 description = "Save gir-generated wrapper for gtk4-layer-shell"
 repository = "https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell"
 documentation = "https://docs.rs/gtk4-layer-shell/"
 keywords = ["gtk4", "gtk4-layer-shell", "wayland", "gir", "wrapper"]
 categories = ["api-bindings", "gui"]
-edition = "2021"
-
 exclude = ["examples"]
+authors.workspace = true
+rust-version.workspace = true
+edition.workspace = true
+license.workspace = true
 
 [package.metadata.docs.rs]
 all-features = true
@@ -20,18 +20,18 @@ rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 [features]
 
 [dependencies]
-libc = "0.2"
-bitflags = "2.0"
-glib = "0.18"
-glib-sys = "0.18"
-gdk = { package = "gdk4", version = "0.7" }
-gtk = { package = "gtk4", version = "0.7" }
+libc.workspace = true
+bitflags.workspace = true
+glib.workspace = true
+glib-sys.workspace = true
+gdk.workspace = true
+gtk.workspace = true
 ffi = { package = "gtk4-layer-shell-sys", path = "../gtk4-layer-shell-sys", version = "0.1" }
 
 [dev-dependencies]
-gio = "0.18"
-libadwaita = "0.5"
-relm4 = "0.7.0-alpha.1" # TODO: Switch to 0.7 as soon as it is available
+gio.workspace = true
+libadwaita.workspace = true
+relm4.workspace = true
 
 [target.'cfg(docsrs)'.dependencies]
 gdk = { package = "gdk4", version = "0.7", features = ["gl", "v4_12"] }
