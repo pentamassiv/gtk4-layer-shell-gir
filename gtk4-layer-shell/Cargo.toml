@@ -29,7 +29,7 @@ gtk = { package = "gtk4", version = "0.7" }
 ffi = { package = "gtk4-layer-shell-sys", path = "../gtk4-layer-shell-sys", version = "0.1" }
 
 [dev-dependencies]
-gio = "0.18"
+gio = "0.19"
 libadwaita = "0.5"
 relm4 = "0.7.0-alpha.1" # TODO: Switch to 0.7 as soon as it is available
 
