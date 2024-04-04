@@ -7,6 +7,9 @@
 #![allow(clippy::approx_constant, clippy::type_complexity, clippy::unreadable_literal, clippy::upper_case_acronyms)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+use glib_sys as glib;
+use gdk4_sys as gdk;
+use gtk4_sys as gtk;
 
 mod manual;
 
@@ -15,7 +18,10 @@ pub use manual::*;
 #[allow(unused_imports)]
 use libc::{c_int, c_char, c_uchar, c_float, c_uint, c_double,
     c_short, c_ushort, c_long, c_ulong,
-    c_void, size_t, ssize_t, intptr_t, uintptr_t, FILE};
+    c_void, size_t, ssize_t, time_t, off_t, intptr_t, uintptr_t, FILE};
+#[cfg(unix)]
+#[allow(unused_imports)]
+use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};

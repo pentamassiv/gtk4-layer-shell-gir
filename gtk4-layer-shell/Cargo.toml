@@ -34,4 +34,4 @@ libadwaita.workspace = true
 relm4.workspace = true
 
 [target.'cfg(docsrs)'.dependencies]
-gdk = { package = "gdk4", version = "0.7", features = ["gl", "v4_12"] }
+gdk = { package = "gdk4", version = "0.8", features = ["gl", "v4_14"] }

@@ -12,7 +12,7 @@ use glib::{prelude::*,translate::*};
 /// exclusive zone to 0 or any other fixed value.
 ///
 /// NOTE: you can control the auto exclusive zone by changing the margin on the non-anchored
-/// edge. This behavior is specific to gtk-layer-shell and not part of the underlying protocol
+/// edge. This behavior is specific to gtk4-layer-shell and not part of the underlying protocol
 /// ## `window`
 /// A layer surface.
 #[doc(alias = "gtk_layer_auto_exclusive_zone_enable")]
@@ -180,7 +180,7 @@ pub fn monitor(window: &impl IsA<gtk::Window>) -> Option<gdk::Monitor> {
 /// # Returns
 ///
 /// a reference to the namespace property. If namespace is unset, returns the
-/// default namespace ("gtk-layer-shell"). Never returns [`None`].
+/// default namespace ("gtk4-layer-shell"). Never returns [`None`].
 #[doc(alias = "gtk_layer_get_namespace")]
 #[doc(alias = "get_namespace")]
 pub fn namespace(window: &impl IsA<gtk::Window>) -> Option<glib::GString> {
@@ -362,7 +362,7 @@ pub fn set_monitor(window: &impl IsA<gtk::Window>, monitor: &gdk::Monitor) {
 /// ownership of original. If the window is currently mapped, it will get remapped so
 /// the change can take effect.
 ///
-/// Default is "gtk-layer-shell" (which will be used if set to [`None`])
+/// Default is "gtk4-layer-shell" (which will be used if set to [`None`])
 /// ## `window`
 /// A layer surface.
 /// ## `name_space`
