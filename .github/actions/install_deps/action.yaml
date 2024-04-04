@@ -31,7 +31,7 @@ runs:
           sudo ldconfig
           cd ..
           cd gtk4-layer-shell-gir
-    - uses: actions/cache@v3
+    - uses: actions/cache@v4
       with:
         path: |
           ~/.cargo/bin/
