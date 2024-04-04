@@ -7,10 +7,18 @@ documentation = "https://docs.rs/gtk4-layer-shell-sys/"
 keywords = ["gtk4", "gtk4-layer-shell", "wayland", "FFI", "unsafe"]
 categories = ["external-ffi-bindings", "gui"]
 build = "build.rs"
-authors.workspace = true
-rust-version.workspace = true
-edition.workspace = true
-license.workspace = true
+
+[package.authors]
+workspace = true
+
+[package.rust-version]
+workspace = true
+
+[package.edition]
+workspace = true
+
+[package.license]
+workspace = true
 
 [package.metadata.system-deps.gtk4_layer_shell_0]
 name = "gtk4-layer-shell-0"
@@ -25,16 +33,22 @@ rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 name = "gtk4_layer_shell_sys"
 
 [dependencies]
-libc.workspace = true
-glib-sys.workspace = true
-gdk4-sys.workspace = true
-gtk4-sys.workspace = true
+libc = "0.2"
+
+[dependencies.glib-sys]
+workspace = true
+
+[dependencies.gdk4-sys]
+workspace = true
+
+[dependencies.gtk4-sys]
+workspace = true
 
 [build-dependencies]
-system-deps.workspace = true
+system-deps = "6"
 
 [dev-dependencies]
-shell-words.workspace = true
-tempfile.workspace = true
+shell-words = "1.0.0"
+tempfile = "3"
 
 [features]
