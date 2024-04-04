@@ -26,7 +26,7 @@ glib.workspace = true
 glib-sys.workspace = true
 gdk.workspace = true
 gtk.workspace = true
-ffi = { package = "gtk4-layer-shell-sys", path = "../gtk4-layer-shell-sys", version = "0.1" }
+ffi = { package = "gtk4-layer-shell-sys", path = "../gtk4-layer-shell-sys", version = "0.2" }
 
 [dev-dependencies]
 gio.workspace = true
