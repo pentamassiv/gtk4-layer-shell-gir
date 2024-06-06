@@ -3,6 +3,7 @@
 // from ../gir-files
 // DO NOT EDIT
 
+use crate::{ffi};
 use glib::{translate::*};
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]

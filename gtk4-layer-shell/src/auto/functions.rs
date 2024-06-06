@@ -3,7 +3,7 @@
 // from ../gir-files
 // DO NOT EDIT
 
-use crate::{Edge,KeyboardMode,Layer};
+use crate::{ffi,Edge,KeyboardMode,Layer};
 use glib::{prelude::*,translate::*};
 
 
