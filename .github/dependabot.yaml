@@ -7,6 +7,24 @@ updates:
     schedule:
       interval: "daily"
 
+  # Maintain dependencies for build_test_commit
+  - package-ecosystem: "github-actions"
+    directory: "/.github/actions/build_test_commit"
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for install_deps
+  - package-ecosystem: "github-actions"
+    directory: "/.github/actions/install_deps"
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for GitHub Workflows
+  - package-ecosystem: "github-actions"
+    directory: "/.github/workflows"
+    schedule:
+      interval: "daily"
+
   # Maintain dependencies for cargo
   - package-ecosystem: "cargo"
     directory: "/gtk4-layer-shell"
@@ -16,5 +34,11 @@ updates:
   # Maintain dependencies for cargo
   - package-ecosystem: "cargo"
     directory: "/gtk4-layer-shell-sys"
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for cargo workspace
+  - package-ecosystem: "cargo"
+    directory: "/"
     schedule:
       interval: "daily"
