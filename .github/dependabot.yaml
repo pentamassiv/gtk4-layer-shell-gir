@@ -42,3 +42,18 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    # Create a group of dependencies to be updated together in one pull request
+    groups:
+      # Name of the group
+      gtk4:
+        update-types:
+          - "major"
+          - "minor"
+        patterns:
+          - "glib"
+          - "glib-sys"
+          - "gdk4"
+          - "gdk4-sys"
+          - "gtk4-sys"
+          - "gtk4"
+          - "gio"
