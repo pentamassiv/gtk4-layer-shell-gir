@@ -22,6 +22,6 @@ gtk = { package = "gtk4", version = "0.8" }
 system-deps = "7"
 shell-words = "1.0"
 tempfile = "3"
-libadwaita = "0.6"
+libadwaita = "0.7"
 relm4 = "0.8"
 gtk4-layer-shell-sys = { path = "gtk4-layer-shell-sys", version = "0.2" }
