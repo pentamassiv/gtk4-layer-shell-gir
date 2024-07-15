@@ -24,4 +24,4 @@ shell-words = "1.0"
 tempfile = "3"
 libadwaita = "0.7"
 relm4 = "0.9"
-gtk4-layer-shell-sys = { path = "gtk4-layer-shell-sys", version = "0.2" }
+gtk4-layer-shell-sys = { path = "gtk4-layer-shell-sys", version = "0.3" }
