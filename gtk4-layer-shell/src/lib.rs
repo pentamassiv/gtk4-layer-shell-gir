@@ -34,7 +34,6 @@ pub use auto::{
 };
 
 mod manual;
-//use manual::*;
 
 pub trait LayerShell: IsA<gtk::Window> {
     /// When auto exclusive zone is enabled, exclusive zone is automatically set to the
@@ -107,7 +106,7 @@ pub trait LayerShell: IsA<gtk::Window> {
     /// the current layer.
     #[doc(alias = "gtk_layer_get_layer")]
     #[doc(alias = "get_layer")]
-    fn layer(&self) -> Layer {
+    fn layer(&self) -> Option<Layer> {
         crate::auto::functions::layer(self)
     }
 
@@ -257,7 +256,7 @@ pub trait LayerShell: IsA<gtk::Window> {
     /// ## `monitor`
     /// The output this layer surface will be placed on ([`None`] to let the compositor decide).
     #[doc(alias = "gtk_layer_set_monitor")]
-    fn set_monitor(&self, monitor: &gdk::Monitor) {
+    fn set_monitor(&self, monitor: Option<&gdk::Monitor>) {
         crate::auto::functions::set_monitor(self, monitor);
     }
 
@@ -274,7 +273,7 @@ pub trait LayerShell: IsA<gtk::Window> {
     /// ## `name_space`
     /// The namespace of this layer surface.
     #[doc(alias = "gtk_layer_set_namespace")]
-    fn set_namespace(&self, name_space: &str) {
+    fn set_namespace(&self, name_space: Option<&str>) {
         crate::auto::functions::set_namespace(self, name_space);
     }
 
