@@ -59,7 +59,7 @@ pub fn is_anchor(window: &impl IsA<gtk::Window>, edge: Edge) -> bool {
 ///
 /// # Returns
 ///
-/// the window's exclusive zone (which may have been set manually or automatically)
+/// the window's exclusive zone(which may have been set manually or automatically)
 #[doc(alias = "gtk_layer_get_exclusive_zone")]
 #[doc(alias = "get_exclusive_zone")]
 pub fn exclusive_zone(window: &impl IsA<gtk::Window>) -> i32 {
@@ -92,7 +92,7 @@ pub fn keyboard_mode(window: &impl IsA<gtk::Window>) -> KeyboardMode {
 /// the current layer.
 #[doc(alias = "gtk_layer_get_layer")]
 #[doc(alias = "get_layer")]
-pub fn layer(window: &impl IsA<gtk::Window>) -> Layer {
+pub fn layer(window: &impl IsA<gtk::Window>) -> Option<Layer> {
     assert_initialized_main_thread!();
     unsafe {
         from_glib(ffi::gtk_layer_get_layer(window.as_ref().to_glib_none().0))
@@ -162,7 +162,7 @@ pub fn minor_version() -> u32 {
 ///
 /// # Returns
 ///
-/// the monitor this surface will/has requested to be on, can be [`None`].
+/// the monitor this surface will/has requested to be on.
 #[doc(alias = "gtk_layer_get_monitor")]
 #[doc(alias = "get_monitor")]
 pub fn monitor(window: &impl IsA<gtk::Window>) -> Option<gdk::Monitor> {
@@ -180,7 +180,7 @@ pub fn monitor(window: &impl IsA<gtk::Window>) -> Option<gdk::Monitor> {
 /// # Returns
 ///
 /// a reference to the namespace property. If namespace is unset, returns the
-/// default namespace ("gtk4-layer-shell"). Never returns [`None`].
+/// default namespace("gtk4-layer-shell"). Never returns [`None`].
 #[doc(alias = "gtk_layer_get_namespace")]
 #[doc(alias = "get_namespace")]
 pub fn namespace(window: &impl IsA<gtk::Window>) -> Option<glib::GString> {
@@ -304,7 +304,7 @@ pub fn set_keyboard_mode(window: &impl IsA<gtk::Window>, mode: KeyboardMode) {
     }
 }
 
-/// Set the "layer" on which the surface appears (controls if it is over top of or below other surfaces). The layer may
+/// Set the "layer" on which the surface appears(controls if it is over top of or below other surfaces). The layer may
 /// be changed on-the-fly in the current version of the layer shell protocol, but on compositors that only support an
 /// older version the `window` is remapped so the change can take effect.
 ///
@@ -322,7 +322,7 @@ pub fn set_layer(window: &impl IsA<gtk::Window>, layer: Layer) {
 }
 
 /// Set the margin for a specific `edge` of a `window`. Effects both surface's distance from
-/// the edge and its exclusive zone size (if auto exclusive zone enabled).
+/// the edge and its exclusive zone size(if auto exclusive zone enabled).
 ///
 /// Default is 0 for each [`Edge`][crate::Edge]
 /// ## `window`
@@ -348,7 +348,7 @@ pub fn set_margin(window: &impl IsA<gtk::Window>, edge: Edge, margin_size: i32) 
 /// ## `monitor`
 /// The output this layer surface will be placed on ([`None`] to let the compositor decide).
 #[doc(alias = "gtk_layer_set_monitor")]
-pub fn set_monitor(window: &impl IsA<gtk::Window>, monitor: &gdk::Monitor) {
+pub fn set_monitor(window: &impl IsA<gtk::Window>, monitor: Option<&gdk::Monitor>) {
     assert_initialized_main_thread!();
     unsafe {
         ffi::gtk_layer_set_monitor(window.as_ref().to_glib_none().0, monitor.to_glib_none().0);
@@ -368,7 +368,7 @@ pub fn set_monitor(window: &impl IsA<gtk::Window>, monitor: &gdk::Monitor) {
 /// ## `name_space`
 /// The namespace of this layer surface.
 #[doc(alias = "gtk_layer_set_namespace")]
-pub fn set_namespace(window: &impl IsA<gtk::Window>, name_space: &str) {
+pub fn set_namespace(window: &impl IsA<gtk::Window>, name_space: Option<&str>) {
     assert_initialized_main_thread!();
     unsafe {
         ffi::gtk_layer_set_namespace(window.as_ref().to_glib_none().0, name_space.to_glib_none().0);
