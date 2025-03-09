@@ -1,5 +1,10 @@
 [workspace]
-members = ["gtk4-layer-shell", "gtk4-layer-shell-sys"]
+members = [
+  "gtk4-layer-shell",
+  "gtk4-layer-shell-sys",
+  "gtk4-session-lock",
+  "gtk4-session-lock-sys",
+]
 exclude = ["gir"]
 resolver = "2"
 
@@ -18,6 +23,7 @@ gio = "0.20"
 gdk4-sys = "0.9"
 gdk = { package = "gdk4", version = "0.9" }
 gtk4-sys = "0.9"
+gobject-sys = "0.20"
 gtk = { package = "gtk4", version = "0.9" }
 system-deps = "7"
 shell-words = "1.0"
@@ -25,3 +31,4 @@ tempfile = "3"
 libadwaita = "0.7"
 relm4 = "0.9"
 gtk4-layer-shell-sys = { path = "gtk4-layer-shell-sys", version = "0.3" }
+gtk4-session-lock-sys = { path = "gtk4-session-lock-sys", version = "0.1" }

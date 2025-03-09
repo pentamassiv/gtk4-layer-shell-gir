@@ -1,0 +1,41 @@
+[package]
+name = "gtk4-session-lock-sys"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+
+[package.metadata.system-deps.gtk4_layer_shell_0]
+name = "gtk4-layer-shell-0"
+version = "1"
+
+[package.metadata.docs.rs]
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+all-features = true
+
+[lib]
+name = "gtk4_session_lock_sys"
+
+[dependencies]
+libc = "0.2"
+
+[dependencies.glib-sys]
+workspace = true
+
+[dependencies.gdk4-sys]
+workspace = true
+
+[dependencies.gobject-sys]
+workspace = true
+
+[dependencies.gtk4-sys]
+workspace = true
+
+[build-dependencies]
+system-deps = "7"
+
+[dev-dependencies]
+shell-words = "1.0.0"
+tempfile = "3"
+
+[features]

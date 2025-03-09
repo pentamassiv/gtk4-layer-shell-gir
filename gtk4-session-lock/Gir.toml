@@ -1,0 +1,21 @@
+[options]
+library = "Gtk4SessionLock"
+version = "1.0"
+target_path = "."
+min_cfg_version = "1.0"
+work_mode = "normal"
+girs_directories = ["../gir-files", ".."]
+generate_safety_asserts = true
+deprecate_by_min_version = true
+single_version_file = true
+
+manual = ["Gtk.Window", "Gdk.Monitor"]
+
+generate = ["Gtk4SessionLock.Instance"]
+
+[[object]]
+name = "Gtk4SessionLock.*"
+status = "ignore"
+[[object.function]]
+name = "is_supported"
+manual = true
