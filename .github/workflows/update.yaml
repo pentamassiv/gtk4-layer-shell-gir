@@ -49,4 +49,4 @@ jobs:
       ##   run: exit 1
       - uses: ./.github/actions/build_test_commit
         with:
-          commit_message: Automatically updated the version of gtk-layer-shell, the gir files or gir
+          commit_message: Automatically updated the version of gtk-layer-shell (the C library), the gir files or gir

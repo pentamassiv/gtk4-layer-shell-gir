@@ -5,12 +5,14 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      crate_type:
+      crate_name:
         type: choice
         description: Which crate to publish?
         options:
-          - sys
-          - wrapper
+          - gtk4-layer-shell-sys
+          - gtk4-layer-shell
+          - gtk4-session-lock-sys
+          - gtk4-session-lock
         required: true
       version:
         description: "New version of the crate"
@@ -29,38 +31,28 @@ jobs:
         with:
             toolchain: nightly
             components: rustfmt, clippy
-      - name: "Set the path"
-        run: |
-          if [[ ${{ github.event.inputs.crate_type }} == 'sys' ]]; then
-            echo "CRATE_PATH=gtk4-layer-shell-sys" >> "$GITHUB_ENV"
-          elif [[ ${{ github.event.inputs.crate_type }} == 'wrapper' ]]; then
-            echo "CRATE_PATH=gtk4-layer-shell" >> "$GITHUB_ENV"
-          else
-            exit 1
-          fi
       - name: Get the version number
         id: previous_version
         run: |
-          echo "PREVIOUS_VERSION=$(grep -o -m 1 -P '(?<=version = ").*(?=")' ./${{ env.CRATE_PATH }}/Cargo.toml)" >> $GITHUB_OUTPUT
+          echo "PREVIOUS_VERSION=$(grep -o -m 1 -P '(?<=version = ").*(?=")' ./${{ github.event.inputs.crate_name }}/Cargo.toml)" >> $GITHUB_OUTPUT
       - name: Output the version numbers
         run: |
           echo "Previous version: ${{ steps.previous_version.outputs.PREVIOUS_VERSION }}"
           echo "New version: ${{ github.event.inputs.version }}"
       - name: Bump version number in Cargo.toml
-        run: |
-          sed -i '0,/version = "${{ steps.previous_version.outputs.PREVIOUS_VERSION }}"/{s//version = "${{ github.event.inputs.version }}"/}' ./${{ env.CRATE_PATH }}/Cargo.toml
+        run: sed -i '0,/version = "${{ steps.previous_version.outputs.PREVIOUS_VERSION }}"/{s//version = "${{ github.event.inputs.version }}"/}' ./${{ github.event.inputs.crate_name }}/Cargo.toml
       - name: Bump version of badge in README.md
-        run: |
-          sed -i '0,/${{ env.CRATE_PATH }}\/${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/{s//${{ env.CRATE_PATH }}\/${{ github.event.inputs.version }}/}' ./${{ env.CRATE_PATH }}/README.md
-          sed -i '0,/${{ env.CRATE_PATH }}\/${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/{s//${{ env.CRATE_PATH }}\/${{ github.event.inputs.version }}/}' ./${{ env.CRATE_PATH }}/README.md
+        run: sed -i 's/\(${github.event.inputs.crate_name}\/\)${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/\1${{ github.event.inputs.version }}/g' ./${{ github.event.inputs.crate_name }}/README.md
+
       - name: Bump version of badge in repo README.md
-        run: |
-          sed -i '0,/${{ env.CRATE_PATH }}\/${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/{s//${{ env.CRATE_PATH }}\/${{ github.event.inputs.version }}/}' ./README.md
-          sed -i '0,/${{ env.CRATE_PATH }}\/${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/{s//${{ env.CRATE_PATH }}\/${{ github.event.inputs.version }}/}' ./README.md
+        run: sed -i 's/\(${github.event.inputs.crate_name}\/\)${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/\1${{ github.event.inputs.version }}/g' ./README.md
+
       - name: Commit the changes to repo
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Bump version number of ${{ github.event.inputs.crate_type }} crate and publish it
+          commit_message: Bump version number of ${{ github.event.inputs.crate_name }} and publish it
       - name: Publish on crates.io
-        working-directory: ./${{ env.CRATE_PATH }}
-        run: cargo publish --token ${{ secrets.CRATES_TOKEN }}
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_TOKEN }}
+        working-directory: ./${{ github.event.inputs.crate_name }}
+        run: cargo publish
