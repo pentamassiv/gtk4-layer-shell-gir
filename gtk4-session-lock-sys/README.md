@@ -1,14 +1,14 @@
-[![Crate](https://img.shields.io/crates/v/gtk4-layer-shell-sys.svg)](https://crates.io/crates/gtk4-layer-shell-sys)
-[![docs.rs](https://docs.rs/gtk4-layer-shell-sys/badge.svg)](https://docs.rs/gtk4-layer-shell-sys)
-[![dependency status](https://deps.rs/crate/gtk4-layer-shell-sys/0.3.0/status.svg)](https://deps.rs/crate/gtk4-layer-shell-sys/0.3.0)
+[![Crate](https://img.shields.io/crates/v/gtk4-session-lock-sys.svg)](https://crates.io/crates/gtk4-session-lock-sys)
+[![docs.rs](https://docs.rs/gtk4-session-lock-sys/badge.svg)](https://docs.rs/gtk4-session-lock-sys)
+[![dependency status](https://deps.rs/crate/gtk4-session-lock-sys/0.1.0/status.svg)](https://deps.rs/crate/gtk4-session-lock-sys/0.1.0)
 
-[![maintenance-status: passively-maintained (as of 2022-10-01)](https://img.shields.io/badge/maintenance--status-passively--maintained_%28as_of_2022--10--01%29-forestgreen)](https://gist.github.com/rusty-snake/574a91f1df9f97ec77ca308d6d731e29)
+[![maintenance-status: passively-maintained (as of 2025-03-13)](https://img.shields.io/badge/maintenance--status-passively--maintained_%28as_of_2025--03--13%29-forestgreen)](https://gist.github.com/rusty-snake/574a91f1df9f97ec77ca308d6d731e29)
 ![dependabot status](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=Dependabot)
 [![Build](https://img.shields.io/github/actions/workflow/status/pentamassiv/gtk4-layer-shell-gir/build.yaml?branch=main)](https://github.com/pentamassiv/gtk4-layer-shell-gir/actions/workflows/build.yaml)
 
 
-# gtk4-layer-shell-sys
-These are the unsafe FFI bindings for [gtk4-layer-shell](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell). You likely want to use that crate instead. It allows building desktop shell components such as panels, notifications and wallpapers with GTK4. It can be used to anchor your windows to a corner or edge of the output, or stretch them across the entire output. To do that, it uses the [Layer Shell](https://wayland.app/protocols/wlr-layer-shell-unstable-v1) Wayland protocol. A list of supported compositors can be found [here](https://wayland.app/protocols/wlr-layer-shell-unstable-v1#compositor-support).
+# gtk4-session-lock-sys
+These are the unsafe FFI bindings for [gtk4-session-lock](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-session-lock). You likely want to use that crate instead. It allows building lock screens with GTK4. To do that, the [Session Lock](https://wayland.app/protocols/ext-session-lock-v1) Wayland protocol is used. A list of supported compositors can be found [here](https://wayland.app/protocols/ext-session-lock-v1#compositor-support).
 
 ## Dependencies
 You need to have `gtk4` and `gtk4-layer-shell` (the C library) installed on your system. `gtk4-layer-shell` version 1.1.0 or higher is needed to use `gtk4-session-lock`. If you want to use [gtk4-layer-shell](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell) and [gtk4-session-lock](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-session-lock) together in a project, make sure to use the same .so file of `gtk4-layer-shell` for both.
