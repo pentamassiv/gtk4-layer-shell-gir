@@ -1,6 +1,6 @@
 [package]
 name = "gtk4-session-lock"
-version = "0.1.1"
+version = "0.1.2"
 description = "Save gir-generated wrapper for gtk4-session-lock"
 repository = "https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-session-lock"
 documentation = "https://docs.rs/gtk4-session-lock/"

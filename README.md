@@ -11,7 +11,7 @@ gtk4-layer-shell-sys:
 gtk4-session-lock:
 [![Crate](https://img.shields.io/crates/v/gtk4-session-lock.svg)](https://crates.io/crates/gtk4-session-lock)
 [![docs.rs](https://docs.rs/gtk4-session-lock/badge.svg)](https://docs.rs/gtk4-session-lock)
-[![dependency status](https://deps.rs/crate/gtk4-session-lock/0.1.1/status.svg)](https://deps.rs/crate/gtk4-session-lock/0.1.1)
+[![dependency status](https://deps.rs/crate/gtk4-session-lock/0.1.2/status.svg)](https://deps.rs/crate/gtk4-session-lock/0.1.2)
 
 gtk4-session-lock-sys:
 [![Crate](https://img.shields.io/crates/v/gtk4-session-lock-sys.svg)](https://crates.io/crates/gtk4-session-lock-sys)
