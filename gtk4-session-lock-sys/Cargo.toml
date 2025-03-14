@@ -1,8 +1,24 @@
 [package]
 name = "gtk4-session-lock-sys"
 version = "0.1.0"
-edition = "2021"
+description = "Unsave gir-generated FFI bindings for gtk4-session-lock"
+repository = "https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-session-lock-sys"
+documentation = "https://docs.rs/gtk4-session-lock-sys/"
+keywords = ["gtk4", "gtk4-session-lock", "wayland", "FFI", "unsafe"]
+categories = ["external-ffi-bindings", "gui"]
 build = "build.rs"
+
+[package.authors]
+workspace = true
+
+[package.rust-version]
+workspace = true
+
+[package.edition]
+workspace = true
+
+[package.license]
+workspace = true
 
 [package.metadata.system-deps.gtk4_layer_shell_0]
 name = "gtk4-layer-shell-0"
