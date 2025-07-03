@@ -1,7 +1,7 @@
 [package]
 name = "gtk4-layer-shell"
 version = "0.5.0"
-description = "Save gir-generated wrapper for gtk4-layer-shell"
+description = "Safe gir-generated wrapper for gtk4-layer-shell"
 repository = "https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell"
 documentation = "https://docs.rs/gtk4-layer-shell/"
 keywords = ["gtk4", "gtk4-layer-shell", "wayland", "gir", "wrapper"]
