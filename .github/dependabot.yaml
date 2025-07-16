@@ -37,6 +37,18 @@ updates:
     schedule:
       interval: "daily"
 
+  # Maintain dependencies for cargo
+  - package-ecosystem: "cargo"
+    directory: "/gtk4-session-lock"
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for cargo
+  - package-ecosystem: "cargo"
+    directory: "/gtk4-session-lock-sys"
+    schedule:
+      interval: "daily"
+
   # Maintain dependencies for cargo workspace
   - package-ecosystem: "cargo"
     directory: "/"
