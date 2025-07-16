@@ -75,6 +75,6 @@ runs:
         echo "NO_CHANGED_FILES=$(git diff --ignore-submodules --name-only -- . ':(exclude)*/src/auto/versions.txt' ':(exclude)gir' | wc -l)" >> $GITHUB_OUTPUT
     - name: Commit code changes to main
       if: inputs.commit_message != '' && steps.changed_files.outputs.NO_CHANGED_FILES != '0'
-      uses: stefanzweifel/git-auto-commit-action@v5
+      uses: stefanzweifel/git-auto-commit-action@v6
       with:
         commit_message: ${{ inputs.commit_message }}
