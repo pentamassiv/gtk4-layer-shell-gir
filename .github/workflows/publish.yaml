@@ -48,7 +48,7 @@ jobs:
         run: sed -i 's/\(${{ github.event.inputs.crate_name }}\/\)${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/\1${{ github.event.inputs.version }}/g' ./README.md
 
       - name: Commit the changes to repo
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: Bump version number of ${{ github.event.inputs.crate_name }} and publish it
       - name: Publish on crates.io
