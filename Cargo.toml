@@ -17,18 +17,18 @@ license = "MIT"
 [workspace.dependencies]
 libc = "0.2"
 bitflags = "2.0"
-glib-sys = "0.20"
-glib = "0.20"
-gio = "0.20"
-gdk4-sys = "0.9"
-gdk = { package = "gdk4", version = "0.9" }
-gtk4-sys = "0.9"
+glib-sys = "0.21"
+glib = "0.21"
+gio = "0.21"
+gdk4-sys = "0.10"
+gdk = { package = "gdk4", version = "0.10" }
+gtk4-sys = "0.10"
 gobject-sys = "0.21"
-gtk = { package = "gtk4", version = "0.9" }
+gtk = { package = "gtk4", version = "0.10" }
 system-deps = "7"
 shell-words = "1.0"
 tempfile = "3"
-libadwaita = "0.7"
-relm4 = "0.9"
+libadwaita = "0.8"
+relm4 = "0.10.0-beta.4"
 gtk4-layer-shell-sys = { path = "gtk4-layer-shell-sys", version = "0.3" }
 gtk4-session-lock-sys = { path = "gtk4-session-lock-sys", version = "0.1" }
