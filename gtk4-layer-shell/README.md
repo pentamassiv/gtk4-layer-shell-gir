@@ -1,6 +1,6 @@
 [![Crate](https://img.shields.io/crates/v/gtk4-layer-shell.svg)](https://crates.io/crates/gtk4-layer-shell)
 [![docs.rs](https://docs.rs/gtk4-layer-shell/badge.svg)](https://docs.rs/gtk4-layer-shell)
-[![dependency status](https://deps.rs/crate/gtk4-layer-shell/0.5.0/status.svg)](https://deps.rs/crate/gtk4-layer-shell/0.5.0)
+[![dependency status](https://deps.rs/crate/gtk4-layer-shell/0.6.0/status.svg)](https://deps.rs/crate/gtk4-layer-shell/0.6.0)
 
 [![maintenance-status: passively-maintained (as of 2022-10-01)](https://img.shields.io/badge/maintenance--status-passively--maintained_%28as_of_2022--10--01%29-forestgreen)](https://gist.github.com/rusty-snake/574a91f1df9f97ec77ca308d6d731e29)
 ![dependabot status](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=Dependabot)
