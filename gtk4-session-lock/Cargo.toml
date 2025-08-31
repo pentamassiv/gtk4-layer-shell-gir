@@ -31,4 +31,4 @@ gtk4-session-lock-sys.workspace = true
 gio.workspace = true
 
 [target.'cfg(docsrs)'.dependencies]
-gdk = { package = "gdk4", version = "0.9", features = ["gl", "v4_16"] }
+gdk = { workspace = true, features = ["gl", "v4_16"] }
