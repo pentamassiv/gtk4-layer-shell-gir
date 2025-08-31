@@ -1,6 +1,6 @@
 [![Crate](https://img.shields.io/crates/v/gtk4-session-lock.svg)](https://crates.io/crates/gtk4-session-lock)
 [![docs.rs](https://docs.rs/gtk4-session-lock/badge.svg)](https://docs.rs/gtk4-session-lock)
-[![dependency status](https://deps.rs/crate/gtk4-session-lock/0.2.0/status.svg)](https://deps.rs/crate/gtk4-session-lock/0.2.0)
+[![dependency status](https://deps.rs/crate/gtk4-session-lock/0.2.1/status.svg)](https://deps.rs/crate/gtk4-session-lock/0.2.1)
 
 [![maintenance-status: passively-maintained (as of 2025-03-13)](https://img.shields.io/badge/maintenance--status-passively--maintained_%28as_of_2025--03--13%29-forestgreen)](https://gist.github.com/rusty-snake/574a91f1df9f97ec77ca308d6d731e29)
 ![dependabot status](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=Dependabot)
