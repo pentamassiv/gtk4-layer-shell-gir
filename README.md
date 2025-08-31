@@ -16,7 +16,7 @@ gtk4-session-lock:
 gtk4-session-lock-sys:
 [![Crate](https://img.shields.io/crates/v/gtk4-session-lock-sys.svg)](https://crates.io/crates/gtk4-session-lock-sys)
 [![docs.rs](https://docs.rs/gtk4-session-lock-sys/badge.svg)](https://docs.rs/gtk4-session-lock-sys)
-[![dependency status](https://deps.rs/crate/gtk4-session-lock-sys/0.1.1/status.svg)](https://deps.rs/crate/gtk4-session-lock-sys/0.1.1)
+[![dependency status](https://deps.rs/crate/gtk4-session-lock-sys/0.2.0/status.svg)](https://deps.rs/crate/gtk4-session-lock-sys/0.2.0)
 
 [![maintenance-status: passively-maintained (as of 2023-04-12)](https://img.shields.io/badge/maintenance--status-passively--maintained_%28as_of_2023--04--12%29-forestgreen)](https://gist.github.com/rusty-snake/574a91f1df9f97ec77ca308d6d731e29)
 ![dependabot status](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=Dependabot)
