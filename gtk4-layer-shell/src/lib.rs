@@ -47,6 +47,7 @@ pub use auto::{
 };
 
 mod manual;
+pub use manual::*;
 
 pub trait LayerShell: IsA<gtk::Window> {
     /// When auto exclusive zone is enabled, exclusive zone is automatically set to the
@@ -290,7 +291,6 @@ pub trait LayerShell: IsA<gtk::Window> {
         crate::auto::functions::set_namespace(self, name_space);
     }
 
-    /* TODO: Fix this
     /// ## `window`
     /// A layer surface.
     ///
@@ -300,11 +300,9 @@ pub trait LayerShell: IsA<gtk::Window> {
     ///
     #[doc(alias = "gtk_layer_get_zwlr_layer_surface_v1")]
     #[doc(alias = "get_zwlr_layer_surface_v1")]
-    fn zwlr_layer_surface_v1(
-        window: &impl glib::object::IsA<gtk::Window>,
-    ) -> *mut ZwlrLayerSurfaceV1 {
+    fn zwlr_layer_surface_v1(&self) -> Option<*mut ffi::zwlr_layer_surface_v1> {
         zwlr_layer_surface_v1(self)
-    }*/
+    }
 }
 
 // The default implementation is always fine
