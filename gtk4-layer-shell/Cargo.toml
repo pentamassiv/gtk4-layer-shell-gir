@@ -1,6 +1,6 @@
 [package]
 name = "gtk4-layer-shell"
-version = "0.6.0"
+version = "0.6.1"
 description = "Safe gir-generated wrapper for gtk4-layer-shell"
 repository = "https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell"
 documentation = "https://docs.rs/gtk4-layer-shell/"
