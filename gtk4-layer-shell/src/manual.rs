@@ -15,6 +15,13 @@ use gtk4_layer_shell_sys as ffi;
 /// # Returns
 ///
 /// The underlying layer surface Wayland object
+// rustdoc-stripper-ignore-next-stop
+/// ## `window`
+/// A layer surface.
+///
+/// # Returns
+///
+/// The underlying layer surface Wayland object
 #[doc(alias = "gtk_layer_get_zwlr_layer_surface_v1")]
 #[doc(alias = "get_zwlr_layer_surface_v1")]
 pub fn zwlr_layer_surface_v1(
