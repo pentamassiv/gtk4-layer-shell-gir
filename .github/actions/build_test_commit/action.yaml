@@ -9,70 +9,93 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Build and test the sys crate
+    - name: Build and test sys crates
       shell: bash
       run: |
+        set -euo pipefail
         export PATH=$PATH:/github/home/.cargo/bin
-        
+
         folders=("gtk4-layer-shell" "gtk4-session-lock")
         for folder in "${folders[@]}"; do
-          echo "Processing sys crate: ${folder}-sys"
-          cd "${folder}-sys" || exit 1
-          ls
-          # Test if there is any output to the gir command
-          if [[ $(gir -o . |& wc -l) -ne 0 ]]; then 
-            echo "gir -o failed"
-            exit 1
-          fi
-          cargo update
-          cargo build --verbose --all-features
-          cargo test --verbose
-          cargo doc --all-features
-          cd ..
-        done
-    # Exit with an error if there is any output of the gir commands, because then there might be some wrongly generated code or errors
-    - name: Build and test the wrapper crate
-      shell: bash
-      run: |
-        export PATH=$PATH:/github/home/.cargo/bin
-        folders=("gtk4-layer-shell" "gtk4-session-lock")
-        for folder in "${folders[@]}"; do
-          echo "Processing wrapper crate: ${folder}"
-          cd "${folder}" || exit 1
-          ls
-          # Test gir commands
+          echo "::group::[SYS] Processing crate: ${folder}-sys"
+          cd "${folder}-sys"
+
+          echo "🔍 Checking gir output..."
           if [[ $(gir -o . |& wc -l) -ne 0 ]]; then
-            echo "gir -o failed"
+            echo "::error::[SYS ${folder}] gir -o produced output, possible error"
             exit 1
           fi
+
+          echo "📦 Running cargo update..."
+          cargo update
+          echo "🔨 Building (all features)..."
+          cargo build --verbose --all-features
+          echo "✅ Running tests..."
+          cargo test --verbose --all-features
+          echo "📚 Building docs..."
+          cargo doc --all-features
+
+          cd ..
+          echo "::endgroup::"
+        done
+
+    - name: Build and test wrapper crates
+      shell: bash
+      run: |
+        set -euo pipefail
+        export PATH=$PATH:/github/home/.cargo/bin
+        folders=("gtk4-layer-shell" "gtk4-session-lock")
+        for folder in "${folders[@]}"; do
+          echo "::group::[WRAPPER] Processing crate: ${folder}"
+          cd "${folder}"
+
+          echo "🔍 Generating code"
+          if [[ $(gir -o . |& wc -l) -ne 0 ]]; then
+            echo "::error::[WRAPPER ${folder}] gir -o produced output"
+            exit 1
+          fi
+          echo "🔍 Checking if some code was not generated"
           if [[ $(gir -o . -m not_bound |& wc -l) -ne 0 ]]; then
-            echo "gir not_bound failed"
+            echo "::error::[WRAPPER ${folder}] gir not_bound produced output"
             exit 1
           fi
-          # Check if the docs were generated without a warning
+          echo "🔍 Generating docs"
           if [[ $(gir -c Gir.toml --doc-target-path docs.md -m doc |& wc -l) -ne 0 ]]; then
-            echo "gir docs failed"
+            echo "::error::[WRAPPER ${folder}] gir docs produced output"
             exit 1
           fi
-          # Documentation processing
+
+          echo "📚 Installing rustdoc-stripper..."
           cargo install rustdoc-stripper --force
           rustdoc-stripper -s -n
           rustdoc-stripper -g -o docs.md
-          # Build and test
+
+          echo "📦 Running cargo update..."
           cargo update
+          echo "🔨 Building (all features)..."
           cargo build --verbose --all-features
-          cargo test --verbose
+          echo "✅ Running tests..."
+          cargo test --verbose --all-features
+          echo "📚 Building docs..."
           cargo doc --all-features
-          # Build examples
+          echo "📂 Building examples..."
           cargo build --examples --all-features
+
           cd ..
+          echo "::endgroup::"
         done
-    - name: Count the number of files other than the versions.txt files, which were changed
+
+    - name: Count changed files (excluding versions.txt and gir)
       id: changed_files
-      shell: bash
       if: ${{ inputs.commit_message != '' }}
+      shell: bash
       run: |
-        echo "NO_CHANGED_FILES=$(git diff --ignore-submodules --name-only -- . ':(exclude)*/src/auto/versions.txt' ':(exclude)gir' | wc -l)" >> $GITHUB_OUTPUT
+        set -euo pipefail
+        changed=$(git diff --ignore-submodules --name-only -- . \
+          ':(exclude)*/src/auto/versions.txt' ':(exclude)gir' | wc -l)
+        echo "NO_CHANGED_FILES=$changed" >> $GITHUB_OUTPUT
+        echo "Changed files (excluding ignored): $changed"
+
     - name: Commit code changes to main
       if: inputs.commit_message != '' && steps.changed_files.outputs.NO_CHANGED_FILES != '0'
       uses: stefanzweifel/git-auto-commit-action@v6
