@@ -5,10 +5,12 @@ and/or use gtk-doc annotations.  -->
 <repository version="1.2"
             xmlns="http://www.gtk.org/introspection/core/1.0"
             xmlns:c="http://www.gtk.org/introspection/c/1.0"
+            xmlns:doc="http://www.gtk.org/introspection/doc/1.0"
             xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
   <include name="Gtk" version="4.0"/>
   <package name="gtk4-layer-shell-0"/>
   <c:include name="gtk4-layer-shell.h"/>
+  <doc:format name="unknown"/>
   <namespace name="Gtk4LayerShell"
              version="1.0"
              shared-library="libgtk4-layer-shell.so.0"
@@ -201,25 +203,25 @@ edge. This behavior is specific to gtk4-layer-shell and not part of the underlyi
     </function>
     <function name="get_keyboard_mode"
               c:identifier="gtk_layer_get_keyboard_mode">
-      <source-position filename="include/gtk4-layer-shell.h" line="336"/>
+      <source-position filename="include/gtk4-layer-shell.h" line="337"/>
       <return-value transfer-ownership="none">
         <doc xml:space="preserve"
              filename="include/gtk4-layer-shell.h"
-             line="334">current keyboard interactivity mode for @window.</doc>
+             line="335">current keyboard interactivity mode for @window.</doc>
         <type name="KeyboardMode" c:type="GtkLayerShellKeyboardMode"/>
       </return-value>
       <parameters>
         <parameter name="window" transfer-ownership="none">
           <doc xml:space="preserve"
                filename="include/gtk4-layer-shell.h"
-               line="332">A layer surface.</doc>
+               line="333">A layer surface.</doc>
           <type name="Gtk.Window" c:type="GtkWindow*"/>
         </parameter>
       </parameters>
     </function>
     <function name="get_layer" c:identifier="gtk_layer_get_layer">
       <source-position filename="include/gtk4-layer-shell.h" line="205"/>
-      <return-value transfer-ownership="none" nullable="1">
+      <return-value transfer-ownership="none">
         <doc xml:space="preserve"
              filename="include/gtk4-layer-shell.h"
              line="203">the current layer.</doc>
@@ -291,7 +293,7 @@ edge. This behavior is specific to gtk4-layer-shell and not part of the underlyi
       <doc xml:space="preserve"
            filename="include/gtk4-layer-shell.h"
            line="219">NOTE: To get which monitor the surface is actually on, use
-gdk_display_get_monitor_at_window().</doc>
+gdk_display_get_monitor_at_surface().</doc>
       <source-position filename="include/gtk4-layer-shell.h" line="228"/>
       <return-value transfer-ownership="none" nullable="1">
         <doc xml:space="preserve"
@@ -506,10 +508,11 @@ Default is 0</doc>
       <doc xml:space="preserve"
            filename="include/gtk4-layer-shell.h"
            line="318">Sets if/when @window should receive keyboard events from the compositor, see
-GtkLayerShellKeyboardMode for details.
+GtkLayerShellKeyboardMode for details. To control mouse/touch interactivity use input regions,
+see [#61](https://github.com/wmww/gtk4-layer-shell/issues/61) for details.
 
 Default is %GTK_LAYER_SHELL_KEYBOARD_MODE_NONE</doc>
-      <source-position filename="include/gtk4-layer-shell.h" line="328"/>
+      <source-position filename="include/gtk4-layer-shell.h" line="329"/>
       <return-value transfer-ownership="none">
         <type name="none" c:type="void"/>
       </return-value>
