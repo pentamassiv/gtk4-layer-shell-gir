@@ -10,3 +10,5 @@ mod instance;
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
 pub use self::instance::Instance;
 
+pub(crate) mod functions;
+

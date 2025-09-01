@@ -38,4 +38,4 @@ gdk = { workspace = true, features = ["gl", "v4_16"] }
 
 [[example]]
 name = "simple"
-required-features = ["v1_1"]
+required-features = ["v1_2"]
