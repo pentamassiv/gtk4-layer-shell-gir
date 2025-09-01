@@ -139,13 +139,13 @@ pub trait LayerShell: IsA<gtk::Window> {
     }
 
     /// NOTE: To get which monitor the surface is actually on, use
-    /// `gdk_display_get_monitor_at_window()`.
+    /// `gdk_display_get_monitor_at_surface()`.
     /// ## `window`
     /// A layer surface.
     ///
     /// # Returns
     ///
-    /// the monitor this surface will/has requested to be on, can be [`None`].
+    /// the monitor this surface will/has requested to be on.
     #[doc(alias = "gtk_layer_get_monitor")]
     #[doc(alias = "get_monitor")]
     fn monitor(&self) -> Option<gdk::Monitor> {
@@ -160,7 +160,7 @@ pub trait LayerShell: IsA<gtk::Window> {
     /// # Returns
     ///
     /// a reference to the namespace property. If namespace is unset, returns the
-    /// default namespace ("gtk-layer-shell"). Never returns [`None`].
+    /// default namespace("gtk4-layer-shell"). Never returns [`None`].
     #[doc(alias = "gtk_layer_get_namespace")]
     #[doc(alias = "get_namespace")]
     fn namespace(&self) -> Option<glib::GString> {
@@ -220,7 +220,8 @@ pub trait LayerShell: IsA<gtk::Window> {
     }
 
     /// Sets if/when `window` should receive keyboard events from the compositor, see
-    /// GtkLayerShellKeyboardMode for details.
+    /// GtkLayerShellKeyboardMode for details. To control mouse/touch interactivity use input regions,
+    /// see [`61`](https://github.com/wmww/gtk4-layer-shell/issues/61) for details.
     ///
     /// Default is [`KeyboardMode::None`][crate::KeyboardMode::None]
     /// ## `window`
@@ -281,7 +282,7 @@ pub trait LayerShell: IsA<gtk::Window> {
     /// ownership of original. If the window is currently mapped, it will get remapped so
     /// the change can take effect.
     ///
-    /// Default is "gtk-layer-shell" (which will be used if set to [`None`])
+    /// Default is "gtk4-layer-shell" (which will be used if set to [`None`])
     /// ## `window`
     /// A layer surface.
     /// ## `name_space`
@@ -297,7 +298,6 @@ pub trait LayerShell: IsA<gtk::Window> {
     /// # Returns
     ///
     /// The underlying layer surface Wayland object
-    ///
     #[doc(alias = "gtk_layer_get_zwlr_layer_surface_v1")]
     #[doc(alias = "get_zwlr_layer_surface_v1")]
     fn zwlr_layer_surface_v1(&self) -> Option<*mut ffi::zwlr_layer_surface_v1> {
