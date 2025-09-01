@@ -11,11 +11,4 @@ single_version_file = true
 
 manual = ["Gtk.Window", "Gdk.Monitor"]
 
-generate = ["Gtk4SessionLock.Instance"]
-
-[[object]]
-name = "Gtk4SessionLock.*"
-status = "ignore"
-[[object.function]]
-name = "is_supported"
-manual = true
+generate = ["Gtk4SessionLock.Instance", "Gtk4SessionLock.*"]
