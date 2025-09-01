@@ -120,7 +120,7 @@ pub trait LayerShell: IsA<gtk::Window> {
     /// the current layer.
     #[doc(alias = "gtk_layer_get_layer")]
     #[doc(alias = "get_layer")]
-    fn layer(&self) -> Option<Layer> {
+    fn layer(&self) -> Layer {
         crate::auto::functions::layer(self)
     }
 
