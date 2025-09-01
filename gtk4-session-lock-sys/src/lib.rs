@@ -59,11 +59,23 @@ extern "C" {
     //=========================================================================
     // GtkSessionLockInstance
     //=========================================================================
+    #[cfg(feature = "v1_1")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
     pub fn gtk_session_lock_instance_get_type() -> GType;
+    #[cfg(feature = "v1_1")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
     pub fn gtk_session_lock_instance_new() -> *mut GtkSessionLockInstance;
+    #[cfg(feature = "v1_1")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
     pub fn gtk_session_lock_instance_assign_window_to_monitor(self_: *mut GtkSessionLockInstance, window: *mut gtk::GtkWindow, monitor: *mut gdk::GdkMonitor);
+    #[cfg(feature = "v1_1")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
     pub fn gtk_session_lock_instance_is_locked(self_: *mut GtkSessionLockInstance) -> gboolean;
+    #[cfg(feature = "v1_1")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
     pub fn gtk_session_lock_instance_lock(self_: *mut GtkSessionLockInstance) -> gboolean;
+    #[cfg(feature = "v1_1")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
     pub fn gtk_session_lock_instance_unlock(self_: *mut GtkSessionLockInstance);
 
     //=========================================================================

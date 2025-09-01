@@ -3,6 +3,10 @@
 // from ../gir-files
 // DO NOT EDIT
 
+#[cfg(feature = "v1_1")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
 mod instance;
+#[cfg(feature = "v1_1")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
 pub use self::instance::Instance;
 
