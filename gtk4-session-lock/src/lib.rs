@@ -3,6 +3,10 @@
 
 use gtk4_session_lock_sys as ffi;
 
+#[allow(unused_imports)]
+#[allow(clippy::single_component_path_imports)]
+use gdk; // Required for the documentation to build without warnings
+
 #[cfg(feature = "v1_1")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
 macro_rules! assert_initialized_main_thread {
