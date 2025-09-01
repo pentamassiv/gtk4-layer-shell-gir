@@ -21,8 +21,10 @@ runs:
           cd "${folder}-sys"
 
           echo "🔍 Checking gir output..."
-          if [[ $(gir -o . |& wc -l) -ne 0 ]]; then
-            echo "::error::[SYS ${folder}] gir -o produced output, possible error"
+          gir_output=$(gir -o . 2>&1 || true)
+          if [[ -n "$gir_output" ]]; then
+            echo "::error::[SYS ${folder}] gir -o produced output"
+            echo "$gir_output"
             exit 1
           fi
 
@@ -50,17 +52,31 @@ runs:
           cd "${folder}"
 
           echo "🔍 Generating code"
-          if [[ $(gir -o . |& wc -l) -ne 0 ]]; then
+          echo "::group::gir -o output"
+          gir_output=$(gir -o . 2>&1 || true)
+          echo "$gir_output"
+          echo "::endgroup::"
+          if [[ -n "$gir_output" ]]; then
             echo "::error::[WRAPPER ${folder}] gir -o produced output"
             exit 1
           fi
+
           echo "🔍 Checking if some code was not generated"
-          if [[ $(gir -o . -m not_bound |& wc -l) -ne 0 ]]; then
+          echo "::group::gir not_bound output"
+          not_bound_output=$(gir -o . -m not_bound 2>&1 || true)
+          echo "$not_bound_output"
+          echo "::endgroup::"
+          if [[ -n "$not_bound_output" ]]; then
             echo "::error::[WRAPPER ${folder}] gir not_bound produced output"
             exit 1
           fi
+
           echo "🔍 Generating docs"
-          if [[ $(gir -c Gir.toml --doc-target-path docs.md -m doc |& wc -l) -ne 0 ]]; then
+          echo "::group::gir docs output"
+          doc_output=$(gir -c Gir.toml --doc-target-path docs.md -m doc 2>&1 || true)
+          echo "$doc_output"
+          echo "::endgroup::"
+          if [[ -n "$doc_output" ]]; then
             echo "::error::[WRAPPER ${folder}] gir docs produced output"
             exit 1
           fi
