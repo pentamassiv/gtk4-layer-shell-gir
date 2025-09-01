@@ -92,7 +92,7 @@ pub fn keyboard_mode(window: &impl IsA<gtk::Window>) -> KeyboardMode {
 /// the current layer.
 #[doc(alias = "gtk_layer_get_layer")]
 #[doc(alias = "get_layer")]
-pub fn layer(window: &impl IsA<gtk::Window>) -> Option<Layer> {
+pub fn layer(window: &impl IsA<gtk::Window>) -> Layer {
     assert_initialized_main_thread!();
     unsafe {
         from_glib(ffi::gtk_layer_get_layer(window.as_ref().to_glib_none().0))
@@ -156,7 +156,7 @@ pub fn minor_version() -> u32 {
 }
 
 /// NOTE: To get which monitor the surface is actually on, use
-/// `gdk_display_get_monitor_at_window()`.
+/// `gdk_display_get_monitor_at_surface()`.
 /// ## `window`
 /// A layer surface.
 ///
@@ -289,7 +289,8 @@ pub fn set_exclusive_zone(window: &impl IsA<gtk::Window>, exclusive_zone: i32) {
 }
 
 /// Sets if/when `window` should receive keyboard events from the compositor, see
-/// GtkLayerShellKeyboardMode for details.
+/// GtkLayerShellKeyboardMode for details. To control mouse/touch interactivity use input regions,
+/// see [`61`](https://github.com/wmww/gtk4-layer-shell/issues/61) for details.
 ///
 /// Default is [`KeyboardMode::None`][crate::KeyboardMode::None]
 /// ## `window`
