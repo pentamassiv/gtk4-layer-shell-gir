@@ -17,7 +17,7 @@ runs:
 
         folders=("gtk4-layer-shell" "gtk4-session-lock")
         for folder in "${folders[@]}"; do
-          echo "::group::[SYS] Processing crate: ${folder}-sys"
+          echo "[SYS] Processing crate: ${folder}-sys"
           cd "${folder}-sys"
 
           echo "🔍 Checking gir output..."
@@ -28,17 +28,20 @@ runs:
             exit 1
           fi
 
-          echo "📦 Running cargo update..."
+          echo "::group::📦 Running cargo update..."
           cargo update
-          echo "🔨 Building (all features)..."
+          echo "::endgroup::"
+          echo "::group::🔨 Building (all features)..."
           cargo build --verbose --all-features
-          echo "✅ Running tests..."
+          echo "::endgroup::"
+          echo "::group::✅ Running tests..."
           cargo test --verbose --all-features
-          echo "📚 Building docs..."
+          echo "::endgroup::"
+          echo "::group::📚 Building docs..."
           cargo doc --all-features
+          echo "::endgroup::"
 
           cd ..
-          echo "::endgroup::"
         done
 
     - name: Build and test wrapper crates
@@ -48,7 +51,7 @@ runs:
         export PATH=$PATH:/github/home/.cargo/bin
         folders=("gtk4-layer-shell" "gtk4-session-lock")
         for folder in "${folders[@]}"; do
-          echo "::group::[WRAPPER] Processing crate: ${folder}"
+          echo "[WRAPPER] Processing crate: ${folder}"
           cd "${folder}"
 
           echo "🔍 Generating code"
@@ -86,19 +89,24 @@ runs:
           rustdoc-stripper -s -n
           rustdoc-stripper -g -o docs.md
 
-          echo "📦 Running cargo update..."
+          
+          echo "::group::📦 Running cargo update..."
           cargo update
-          echo "🔨 Building (all features)..."
+          echo "::endgroup::"
+          echo "::group::🔨 Building (all features)..."
           cargo build --verbose --all-features
-          echo "✅ Running tests..."
+          echo "::endgroup::"
+          echo "::group::✅ Running tests..."
           cargo test --verbose --all-features
-          echo "📚 Building docs..."
+          echo "::endgroup::"
+          echo "::group::📚 Building docs..."
           cargo doc --all-features
-          echo "📂 Building examples..."
+          echo "::endgroup::"
+          echo "::group::📂 Building examples..."
           cargo build --examples --all-features
+          echo "::endgroup::"
 
           cd ..
-          echo "::endgroup::"
         done
 
     - name: Count changed files (excluding versions.txt and gir)
