@@ -7,9 +7,9 @@ updates:
     schedule:
       interval: "daily"
 
-  # Maintain dependencies for build_test_commit
+  # Maintain dependencies for build_regenerate_test
   - package-ecosystem: "github-actions"
-    directory: "/.github/actions/build_test_commit"
+    directory: "/.github/actions/build_regenerate_test"
     schedule:
       interval: "daily"
 

@@ -33,20 +33,26 @@ jobs:
           ls
           export PATH=$PATH:/github/home/.cargo/bin
           cargo install --force --path .
-      - uses: ./.github/actions/build_test_commit
-        with:
-          commit_message: Automatically updated the version of gir or gir-files
-      ## TODO: Enable these checks once libgtk4-layer-shell-dev is available on Ubuntu
-      ## Check the version of the gtk4-layer-shell package
-      ## Aborts if there was a major version bump
-      ## - name: Get the first character of the version of the gtk4-layer-shell package to detect mayor version bumps
-      ##   id: major_version_check
-      ##   run: |
-      ##     echo "MAJOR_VERSION=$(dpkg -s libgtk4-layer-shell-dev | grep Version | sed 's/Version. 0.//' | cut -c1-1)" >> $GITHUB_OUTPUT
-      ##     echo "Version: ${{ steps.major_version_check.outputs.MAJOR_VERSION }}"
-      ## - name: Fail if mayor version was increased
-      ##   if: steps.major_version_check.outputs.MAJOR_VERSION != '1'
-      ##   run: exit 1
-      - uses: ./.github/actions/build_test_commit
-        with:
-          commit_message: Automatically updated the version of gtk-layer-shell (the C library), the gir files or gir
+      - uses: ./.github/actions/build_regenerate_test
+      - name: Commit updated code + submodules
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Detect changes, ignoring gir/, gir-files/, and versions.txt
+          if git diff --quiet HEAD -- . \
+            ':(exclude)gir' \
+            ':(exclude)gir-files' \
+            ':(exclude)*/src/auto/versions.txt'; then
+            echo "No relevant changes to commit."
+            exit 0
+          fi
+
+          # Something else changed → commit everything
+          git add -A
+          git commit -m "Automatically updated generated code and submodules"
+          git push
+
+
+
+

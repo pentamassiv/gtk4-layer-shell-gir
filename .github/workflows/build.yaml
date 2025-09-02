@@ -36,4 +36,4 @@ jobs:
         run: |
           export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
           export LD_LIBRARY_PATH=/usr/local/lib
-      - uses: ./.github/actions/build_test_commit
+      - uses: ./.github/actions/build_regenerate_test
