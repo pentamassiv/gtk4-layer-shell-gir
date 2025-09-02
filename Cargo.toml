@@ -31,4 +31,4 @@ tempfile = "3"
 libadwaita = "0.8"
 relm4 = "0.10"
 gtk4-layer-shell-sys = { path = "gtk4-layer-shell-sys", version = "0.4" }
-gtk4-session-lock-sys = { path = "gtk4-session-lock-sys", version = "0.2" }
+gtk4-session-lock-sys = { path = "gtk4-session-lock-sys", version = "0.3" }
