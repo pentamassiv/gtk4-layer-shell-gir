@@ -5,15 +5,13 @@ and/or use gtk-doc annotations.  -->
 <repository version="1.2"
             xmlns="http://www.gtk.org/introspection/core/1.0"
             xmlns:c="http://www.gtk.org/introspection/c/1.0"
-            xmlns:doc="http://www.gtk.org/introspection/doc/1.0"
             xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
   <include name="Gtk" version="4.0"/>
   <package name="gtk4-layer-shell-0"/>
   <c:include name="gtk4-session-lock.h"/>
-  <doc:format name="unknown"/>
   <namespace name="Gtk4SessionLock"
              version="1.0"
-             shared-library="libgtk4-layer-shell.so.0"
+             shared-library="libasan.so.8,libubsan.so.1,libgtk4-layer-shell.so.0"
              c:identifier-prefixes="GtkSessionLock"
              c:symbol-prefixes="gtk_session_lock">
     <class name="Instance"
