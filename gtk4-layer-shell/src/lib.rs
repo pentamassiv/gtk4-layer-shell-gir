@@ -303,6 +303,37 @@ pub trait LayerShell: IsA<gtk::Window> {
     fn zwlr_layer_surface_v1(&self) -> Option<*mut ffi::zwlr_layer_surface_v1> {
         zwlr_layer_surface_v1(self)
     }
+
+    /// ## `window`
+    /// A layer surface.
+    ///
+    /// # Returns
+    ///
+    /// if the respect_close behavior is enabled, see [`set_respect_close()`][crate::LayerShell::set_respect_close()]
+    #[cfg(feature = "v1_3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "gtk_layer_get_respect_close")]
+    #[doc(alias = "get_respect_close")]
+    fn is_respect_close(&self) -> bool {
+        crate::auto::functions::is_respect_close(self)
+    }
+
+    /// Compositors may send the `zwlr_layer_surface_v1.closed` event in some cases (such as
+    /// when an output is destroyed). Prior to v1.3 this always triggered a GTK `close-request`
+    /// signal, which would destroy the window if not intercepted by application code. In v1.3+
+    /// this behavior is disabled by default, and can be turned back on by calling this
+    /// function with [`true`]. To handle the `.closed` event without destroying your window
+    /// turn respect_close on and connect a `close-request` listener that returns [`true`].
+    /// ## `window`
+    /// A layer surface.
+    /// ## `respect_close`
+    /// If to forward the .closed event to GTK.
+    #[cfg(feature = "v1_3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "gtk_layer_set_respect_close")]
+    fn set_respect_close(&self, respect_close: bool) {
+        crate::auto::functions::set_respect_close(self, respect_close);
+    }
 }
 
 // The default implementation is always fine
