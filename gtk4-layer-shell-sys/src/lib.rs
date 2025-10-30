@@ -66,6 +66,9 @@ extern "C" {
     pub fn gtk_layer_get_monitor(window: *mut gtk::GtkWindow) -> *mut gdk::GdkMonitor;
     pub fn gtk_layer_get_namespace(window: *mut gtk::GtkWindow) -> *const c_char;
     pub fn gtk_layer_get_protocol_version() -> c_uint;
+    #[cfg(feature = "v1_3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
+    pub fn gtk_layer_get_respect_close(window: *mut gtk::GtkWindow) -> gboolean;
     pub fn gtk_layer_get_zwlr_layer_surface_v1(window: *mut gtk::GtkWindow) -> *mut zwlr_layer_surface_v1;
     pub fn gtk_layer_init_for_window(window: *mut gtk::GtkWindow);
     pub fn gtk_layer_is_layer_window(window: *mut gtk::GtkWindow) -> gboolean;
@@ -77,5 +80,8 @@ extern "C" {
     pub fn gtk_layer_set_margin(window: *mut gtk::GtkWindow, edge: GtkLayerShellEdge, margin_size: c_int);
     pub fn gtk_layer_set_monitor(window: *mut gtk::GtkWindow, monitor: *mut gdk::GdkMonitor);
     pub fn gtk_layer_set_namespace(window: *mut gtk::GtkWindow, name_space: *const c_char);
+    #[cfg(feature = "v1_3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
+    pub fn gtk_layer_set_respect_close(window: *mut gtk::GtkWindow, respect_close: gboolean);
 
 }

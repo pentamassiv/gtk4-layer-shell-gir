@@ -19,7 +19,7 @@ rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [features]
 default = []
-v1_3 = []
+v1_3 = ["gtk4-layer-shell-sys/v1_3"]
 
 [dependencies]
 libc.workspace = true
