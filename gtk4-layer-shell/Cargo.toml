@@ -18,6 +18,8 @@ rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [features]
+default = []
+v1_3 = []
 
 [dependencies]
 libc.workspace = true
