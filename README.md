@@ -6,7 +6,7 @@ gtk4-layer-shell:
 gtk4-layer-shell-sys:
 [![Crate](https://img.shields.io/crates/v/gtk4-layer-shell-sys.svg)](https://crates.io/crates/gtk4-layer-shell-sys)
 [![docs.rs](https://docs.rs/gtk4-layer-shell-sys/badge.svg)](https://docs.rs/gtk4-layer-shell-sys)
-[![dependency status](https://deps.rs/crate/gtk4-layer-shell-sys/0.5.0/status.svg)](https://deps.rs/crate/gtk4-layer-shell-sys/0.5.0)
+[![dependency status](https://deps.rs/crate/gtk4-layer-shell-sys/0.5.1/status.svg)](https://deps.rs/crate/gtk4-layer-shell-sys/0.5.1)
 
 gtk4-session-lock:
 [![Crate](https://img.shields.io/crates/v/gtk4-session-lock.svg)](https://crates.io/crates/gtk4-session-lock)
