@@ -30,6 +30,7 @@ version = "1.3"
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--generate-link-to-definition"]
+rustc-args = ["--cfg", "docsrs"]
 
 [lib]
 name = "gtk4_layer_shell_sys"

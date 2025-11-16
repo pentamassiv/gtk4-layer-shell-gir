@@ -33,6 +33,7 @@ version = "1.2"
 [package.metadata.docs.rs]
 rustdoc-args = ["--generate-link-to-definition"]
 all-features = true
+rustc-args = ["--cfg", "docsrs"]
 
 [lib]
 name = "gtk4_session_lock_sys"
