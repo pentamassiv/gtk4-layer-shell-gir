@@ -1,6 +1,6 @@
 [package]
 name = "gtk4-layer-shell-sys"
-version = "0.5.1"
+version = "0.5.2"
 description = "Unsafe gir-generated FFI bindings for gtk4-layer-shell"
 repository = "https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell-sys"
 documentation = "https://docs.rs/gtk4-layer-shell-sys/"
