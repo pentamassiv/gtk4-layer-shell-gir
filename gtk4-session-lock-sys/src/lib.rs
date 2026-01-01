@@ -54,7 +54,7 @@ impl ::std::fmt::Debug for GtkSessionLockInstance {
     }
 }
 
-extern "C" {
+unsafe extern "C" {
 
     //=========================================================================
     // GtkSessionLockInstance

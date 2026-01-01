@@ -113,10 +113,10 @@ impl Instance {
     /// The ::failed signal is fired when the lock could not be acquired.
     #[doc(alias = "failed")]
     pub fn connect_failed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn failed_trampoline<F: Fn(&Instance) + 'static>(this: *mut ffi::GtkSessionLockInstance, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn failed_trampoline<F: Fn(&Instance) + 'static>(this: *mut ffi::GtkSessionLockInstance, f: glib::ffi::gpointer) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, c"failed".as_ptr() as *const _,
@@ -127,10 +127,10 @@ impl Instance {
     /// The ::locked signal is fired when the screen is successfully locked.
     #[doc(alias = "locked")]
     pub fn connect_locked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn locked_trampoline<F: Fn(&Instance) + 'static>(this: *mut ffi::GtkSessionLockInstance, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn locked_trampoline<F: Fn(&Instance) + 'static>(this: *mut ffi::GtkSessionLockInstance, f: glib::ffi::gpointer) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, c"locked".as_ptr() as *const _,
@@ -151,10 +151,10 @@ impl Instance {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "monitor")]
     pub fn connect_monitor<F: Fn(&Self, &gdk::Monitor) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn monitor_trampoline<F: Fn(&Instance, &gdk::Monitor) + 'static>(this: *mut ffi::GtkSessionLockInstance, monitor: *mut gdk::ffi::GdkMonitor, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn monitor_trampoline<F: Fn(&Instance, &gdk::Monitor) + 'static>(this: *mut ffi::GtkSessionLockInstance, monitor: *mut gdk::ffi::GdkMonitor, f: glib::ffi::gpointer) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this), &from_glib_borrow(monitor))
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, c"monitor".as_ptr() as *const _,
@@ -166,10 +166,10 @@ impl Instance {
     /// [`unlock()`][Self::unlock()] or by the compositor.
     #[doc(alias = "unlocked")]
     pub fn connect_unlocked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn unlocked_trampoline<F: Fn(&Instance) + 'static>(this: *mut ffi::GtkSessionLockInstance, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn unlocked_trampoline<F: Fn(&Instance) + 'static>(this: *mut ffi::GtkSessionLockInstance, f: glib::ffi::gpointer) { unsafe {
             let f: &F = &*(f as *const F);
             f(&from_glib_borrow(this))
-        }
+        }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, c"unlocked".as_ptr() as *const _,

@@ -48,7 +48,7 @@ pub const GTK_LAYER_SHELL_LAYER_TOP: GtkLayerShellLayer = 2;
 pub const GTK_LAYER_SHELL_LAYER_OVERLAY: GtkLayerShellLayer = 3;
 pub const GTK_LAYER_SHELL_LAYER_ENTRY_NUMBER: GtkLayerShellLayer = 4;
 
-extern "C" {
+unsafe extern "C" {
 
     //=========================================================================
     // Other functions
