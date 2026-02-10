@@ -119,7 +119,7 @@ impl Instance {
         }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"failed".as_ptr() as *const _,
+            connect_raw(self.as_ptr() as *mut _, c"failed".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(failed_trampoline::<F> as *const ())), Box_::into_raw(f))
         }
     }
@@ -133,7 +133,7 @@ impl Instance {
         }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"locked".as_ptr() as *const _,
+            connect_raw(self.as_ptr() as *mut _, c"locked".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(locked_trampoline::<F> as *const ())), Box_::into_raw(f))
         }
     }
@@ -157,7 +157,7 @@ impl Instance {
         }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"monitor".as_ptr() as *const _,
+            connect_raw(self.as_ptr() as *mut _, c"monitor".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(monitor_trampoline::<F> as *const ())), Box_::into_raw(f))
         }
     }
@@ -172,7 +172,7 @@ impl Instance {
         }}
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, c"unlocked".as_ptr() as *const _,
+            connect_raw(self.as_ptr() as *mut _, c"unlocked".as_ptr(),
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(unlocked_trampoline::<F> as *const ())), Box_::into_raw(f))
         }
     }
