@@ -8,7 +8,7 @@ use glib::{prelude::*,translate::*};
 
 
 /// When auto exclusive zone is enabled, exclusive zone is automatically set to the
-/// size of the `window` + relevant margin. To disable auto exclusive zone, just set the
+/// size of the @window + relevant margin. To disable auto exclusive zone, just set the
 /// exclusive zone to 0 or any other fixed value.
 ///
 /// NOTE: you can control the auto exclusive zone by changing the margin on the non-anchored
@@ -74,7 +74,7 @@ pub fn exclusive_zone(window: &impl IsA<gtk::Window>) -> i32 {
 ///
 /// # Returns
 ///
-/// current keyboard interactivity mode for `window`.
+/// current keyboard interactivity mode for @window.
 #[doc(alias = "gtk_layer_get_keyboard_mode")]
 #[doc(alias = "get_keyboard_mode")]
 pub fn keyboard_mode(window: &impl IsA<gtk::Window>) -> KeyboardMode {
@@ -156,7 +156,7 @@ pub fn minor_version() -> u32 {
 }
 
 /// NOTE: To get which monitor the surface is actually on, use
-/// `gdk_display_get_monitor_at_surface()`.
+/// gdk_display_get_monitor_at_surface().
 /// ## `window`
 /// A layer surface.
 ///
@@ -210,7 +210,7 @@ pub fn protocol_version() -> u32 {
 ///
 /// # Returns
 ///
-/// if the respect_close behavior is enabled, see [`set_respect_close()`][crate::set_respect_close()]
+/// if the respect_close behavior is enabled, see gtk_layer_set_respect_close()
 #[cfg(feature = "v1_3")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
 #[doc(alias = "gtk_layer_get_respect_close")]
@@ -228,10 +228,10 @@ pub fn is_respect_close(window: &impl IsA<gtk::Window>) -> bool {
 //    unsafe { TODO: call ffi:gtk_layer_get_zwlr_layer_surface_v1() }
 //}
 
-/// Set the `window` up to be a layer surface once it is mapped. this must be called before
-/// the `window` is realized.
+/// Set the @window up to be a layer surface once it is mapped. this must be called before
+/// the @window is realized.
 /// ## `window`
-/// A [`gtk::Window`][crate::gtk::Window] to be turned into a layer surface.
+/// A #GtkWindow to be turned into a layer surface.
 #[doc(alias = "gtk_layer_init_for_window")]
 pub fn init_for_window(window: &impl IsA<gtk::Window>) {
     assert_initialized_main_thread!();
@@ -241,11 +241,11 @@ pub fn init_for_window(window: &impl IsA<gtk::Window>) {
 }
 
 /// ## `window`
-/// A [`gtk::Window`][crate::gtk::Window] that may or may not have a layer surface.
+/// A #GtkWindow that may or may not have a layer surface.
 ///
 /// # Returns
 ///
-/// if `window` has been initialized as a layer surface.
+/// if @window has been initialized as a layer surface.
 #[doc(alias = "gtk_layer_is_layer_window")]
 pub fn is_layer_window(window: &impl IsA<gtk::Window>) -> bool {
     assert_initialized_main_thread!();
@@ -268,17 +268,17 @@ pub fn is_supported() -> bool {
     }
 }
 
-/// Set whether `window` should be anchored to `edge`.
+/// Set whether @window should be anchored to @edge.
 /// - If two perpendicular edges are anchored, the surface with be anchored to that corner
 /// - If two opposite edges are anchored, the window will be stretched across the screen in that direction
 ///
-/// Default is [`false`] for each [`Edge`][crate::Edge]
+/// Default is [`false`] for each #GtkLayerShellEdge
 /// ## `window`
 /// A layer surface.
 /// ## `edge`
-/// A [`Edge`][crate::Edge] this layer surface may be anchored to.
+/// A #GtkLayerShellEdge this layer surface may be anchored to.
 /// ## `anchor_to_edge`
-/// Whether or not to anchor this layer surface to `edge`.
+/// Whether or not to anchor this layer surface to @edge.
 #[doc(alias = "gtk_layer_set_anchor")]
 pub fn set_anchor(window: &impl IsA<gtk::Window>, edge: Edge, anchor_to_edge: bool) {
     assert_initialized_main_thread!();
@@ -305,9 +305,9 @@ pub fn set_exclusive_zone(window: &impl IsA<gtk::Window>, exclusive_zone: i32) {
     }
 }
 
-/// Sets if/when `window` should receive keyboard events from the compositor, see
+/// Sets if/when @window should receive keyboard events from the compositor, see
 /// GtkLayerShellKeyboardMode for details. To control mouse/touch interactivity use input regions,
-/// see [`61`](https://github.com/wmww/gtk4-layer-shell/issues/61) for details.
+/// see [#61](https://github.com/wmww/gtk4-layer-shell/issues/61) for details.
 ///
 /// Default is [`KeyboardMode::None`][crate::KeyboardMode::None]
 /// ## `window`
@@ -324,7 +324,7 @@ pub fn set_keyboard_mode(window: &impl IsA<gtk::Window>, mode: KeyboardMode) {
 
 /// Set the "layer" on which the surface appears(controls if it is over top of or below other surfaces). The layer may
 /// be changed on-the-fly in the current version of the layer shell protocol, but on compositors that only support an
-/// older version the `window` is remapped so the change can take effect.
+/// older version the @window is remapped so the change can take effect.
 ///
 /// Default is [`Layer::Top`][crate::Layer::Top]
 /// ## `window`
@@ -339,16 +339,16 @@ pub fn set_layer(window: &impl IsA<gtk::Window>, layer: Layer) {
     }
 }
 
-/// Set the margin for a specific `edge` of a `window`. Effects both surface's distance from
+/// Set the margin for a specific @edge of a @window. Effects both surface's distance from
 /// the edge and its exclusive zone size(if auto exclusive zone enabled).
 ///
-/// Default is 0 for each [`Edge`][crate::Edge]
+/// Default is 0 for each #GtkLayerShellEdge
 /// ## `window`
 /// A layer surface.
 /// ## `edge`
-/// The [`Edge`][crate::Edge] for which to set the margin.
+/// The #GtkLayerShellEdge for which to set the margin.
 /// ## `margin_size`
-/// The margin for `edge` to be set.
+/// The margin for @edge to be set.
 #[doc(alias = "gtk_layer_set_margin")]
 pub fn set_margin(window: &impl IsA<gtk::Window>, edge: Edge, margin_size: i32) {
     assert_initialized_main_thread!();
@@ -376,7 +376,7 @@ pub fn set_monitor(window: &impl IsA<gtk::Window>, monitor: Option<&gdk::Monitor
 /// Set the "namespace" of the surface.
 ///
 /// No one is quite sure what this is for, but it probably should be something generic
-/// ("panel", "osk", etc). The `name_space` string is copied, and caller maintains
+/// ("panel", "osk", etc). The @name_space string is copied, and caller maintains
 /// ownership of original. If the window is currently mapped, it will get remapped so
 /// the change can take effect.
 ///

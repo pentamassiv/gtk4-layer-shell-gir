@@ -28,11 +28,11 @@ glib::wrapper! {
     ///
     /// #### `monitor`
     ///  The ::monitor signal is fired once for each monitor that exists when a lock is started, and then whenever a new
-    /// monitor is detected during the lock. You generally want to call [`Instance::assign_window_to_monitor()`][crate::Instance::assign_window_to_monitor()]
+    /// monitor is detected during the lock. You generally want to call gtk_session_lock_instance_assign_window_to_monitor()
     /// once in the handler for this signal with a newly created window and the given monitor.
     ///
     /// This API does not directly tell you when a monitor is removed (GTK APIs can be used for that), however the window you
-    /// send to [`Instance::assign_window_to_monitor()`][crate::Instance::assign_window_to_monitor()] will be automatically unmapped and dereferenced when its
+    /// send to gtk_session_lock_instance_assign_window_to_monitor() will be automatically unmapped and dereferenced when its
     /// monitor is removed or the screen is unlocked.
     ///
     ///
@@ -40,7 +40,7 @@ glib::wrapper! {
     ///
     /// #### `unlocked`
     ///  The ::unlocked signal is fired when the session is unlocked, which may have been caused by a call to
-    /// [`Instance::unlock()`][crate::Instance::unlock()] or by the compositor.
+    /// gtk_session_lock_instance_unlock() or by the compositor.
     ///
     ///
     #[doc(alias = "GtkSessionLockInstance")]
@@ -65,8 +65,8 @@ impl Instance {
     }
 
     /// This must be called with a different unrealized window once for each monitor immediately after calling
-    /// `gtk_session_lock_lock()`. Hiding a window that is active on a monitor or not letting a window be resized by the
-    /// library is not allowed (may result in a Wayland protocol error). The window will be unmapped and `gtk_window_destroy()`
+    /// gtk_session_lock_lock(). Hiding a window that is active on a monitor or not letting a window be resized by the
+    /// library is not allowed (may result in a Wayland protocol error). The window will be unmapped and gtk_window_destroy()
     /// called on it when the current lock ends.
     /// ## `window`
     /// The GTK Window to use as a lock surface
@@ -89,7 +89,7 @@ impl Instance {
 
     /// Lock the screen. This should be called before assigning any windows to monitors. If this function fails the ::failed
     /// signal is emitted, if it succeeds the ::locked signal is emitted. The ::failed signal may be emitted before the
-    /// function returns (for example, if another [`Instance`][crate::Instance] holds a lock) or later (if another process holds a
+    /// function returns (for example, if another #GtkSessionLockInstance holds a lock) or later (if another process holds a
     /// lock). The only case where neither signal is triggered is if the instance is already locked.
     ///
     /// # Returns
@@ -139,14 +139,14 @@ impl Instance {
     }
 
     /// The ::monitor signal is fired once for each monitor that exists when a lock is started, and then whenever a new
-    /// monitor is detected during the lock. You generally want to call [`assign_window_to_monitor()`][Self::assign_window_to_monitor()]
+    /// monitor is detected during the lock. You generally want to call gtk_session_lock_instance_assign_window_to_monitor()
     /// once in the handler for this signal with a newly created window and the given monitor.
     ///
     /// This API does not directly tell you when a monitor is removed (GTK APIs can be used for that), however the window you
-    /// send to [`assign_window_to_monitor()`][Self::assign_window_to_monitor()] will be automatically unmapped and dereferenced when its
+    /// send to gtk_session_lock_instance_assign_window_to_monitor() will be automatically unmapped and dereferenced when its
     /// monitor is removed or the screen is unlocked.
     /// ## `monitor`
-    /// the [`gdk::Monitor`][crate::gdk::Monitor] that exists or was added
+    /// the #GdkMonitor that exists or was added
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "monitor")]
@@ -163,7 +163,7 @@ impl Instance {
     }
 
     /// The ::unlocked signal is fired when the session is unlocked, which may have been caused by a call to
-    /// [`unlock()`][Self::unlock()] or by the compositor.
+    /// gtk_session_lock_instance_unlock() or by the compositor.
     #[doc(alias = "unlocked")]
     pub fn connect_unlocked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unlocked_trampoline<F: Fn(&Instance) + 'static>(this: *mut ffi::GtkSessionLockInstance, f: glib::ffi::gpointer) { unsafe {
