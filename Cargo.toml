@@ -17,12 +17,12 @@ license = "MIT"
 [workspace.dependencies]
 libc = "0.2"
 bitflags = "2.0"
-glib-sys = "0.21"
-glib = "0.21"
-gio = "0.21"
-gdk4-sys = "0.10"
+glib-sys = "0.22"
+glib = "0.22"
+gio = "0.22"
+gdk4-sys = "0.11"
 gdk = { package = "gdk4", version = "0.10" }
-gtk4-sys = "0.10"
+gtk4-sys = "0.11"
 gobject-sys = "0.21"
 gtk = { package = "gtk4", version = "0.10" }
 system-deps = "7"
