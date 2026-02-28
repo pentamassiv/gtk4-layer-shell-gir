@@ -1,0 +1,51 @@
+name: "Relm4 Example Check"
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  relm4-example:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: "true"
+
+      - uses: ./.github/actions/install_deps
+
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+
+      - name: Check relm4 example mini-crate
+        id: relm4_check
+        shell: bash
+        run: |
+          set +e
+          cargo check --manifest-path contrib/relm4-example/Cargo.toml
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Write job summary
+        if: always()
+        shell: bash
+        run: |
+          if [ "${{ steps.relm4_check.outputs.status }}" = "0" ]; then
+            echo "relm4 example builds with current dependency set." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "relm4 example currently fails to build (non-blocking signal)." >> "$GITHUB_STEP_SUMMARY"
+          fi
