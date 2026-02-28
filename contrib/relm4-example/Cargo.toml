@@ -1,0 +1,12 @@
+[package]
+name = "gtk4-layer-shell-relm4-example"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[dependencies]
+gtk = { package = "gtk4", version = "0.11" }
+gtk4-layer-shell = { path = "../../gtk4-layer-shell" }
+relm4 = "0.10"

@@ -32,7 +32,6 @@ gtk4-layer-shell-sys.workspace = true
 [dev-dependencies]
 gio.workspace = true
 libadwaita.workspace = true
-relm4.workspace = true
 
 [target.'cfg(docsrs)'.dependencies]
 gdk = { workspace = true, features = ["gl", "v4_16"] }
