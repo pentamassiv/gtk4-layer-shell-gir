@@ -100,6 +100,6 @@ runs:
           echo "::group::📂 Building examples..."
           cargo build --examples --all-features
           echo "::endgroup::"
-
           cd ..
         done
+        cargo build --manifest-path gtk4-layer-shell/examples/relm4/Cargo.toml
