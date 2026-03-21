@@ -1,4 +1,4 @@
-# relm4 Example (Optional)
+# relm4 Example
 
 This is a standalone relm4 integration example for `gtk4-layer-shell`.
 
