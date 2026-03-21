@@ -1,4 +1,7 @@
 // This is based on the simple example of the relm4 repo and is meant to showcase how easily this library can be used with relm4
+// Pay attention to the versions it uses as they might not be in sync with the main repo
+
+#![deny(clippy::pedantic)]
 
 use gtk::prelude::*;
 use gtk4_layer_shell::{Edge, Layer, LayerShell}; // Import the additional types
