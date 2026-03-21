@@ -1,62 +1,17 @@
 version: 2
 updates:
-
-  # Maintain dependencies for GitHub Actions
+  # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
 
-  # Maintain dependencies for build_regenerate_test
-  - package-ecosystem: "github-actions"
-    directory: "/.github/actions/build_regenerate_test"
-    schedule:
-      interval: "daily"
-
-  # Maintain dependencies for install_deps
-  - package-ecosystem: "github-actions"
-    directory: "/.github/actions/install_deps"
-    schedule:
-      interval: "daily"
-
-  # Maintain dependencies for GitHub Workflows
-  - package-ecosystem: "github-actions"
-    directory: "/.github/workflows"
-    schedule:
-      interval: "daily"
-
-  # Maintain dependencies for cargo
-  - package-ecosystem: "cargo"
-    directory: "/gtk4-layer-shell"
-    schedule:
-      interval: "daily"
-
-  # Maintain dependencies for cargo
-  - package-ecosystem: "cargo"
-    directory: "/gtk4-layer-shell-sys"
-    schedule:
-      interval: "daily"
-
-  # Maintain dependencies for cargo
-  - package-ecosystem: "cargo"
-    directory: "/gtk4-session-lock"
-    schedule:
-      interval: "daily"
-
-  # Maintain dependencies for cargo
-  - package-ecosystem: "cargo"
-    directory: "/gtk4-session-lock-sys"
-    schedule:
-      interval: "daily"
-
-  # Maintain dependencies for cargo workspace
+  # Cargo workspace
   - package-ecosystem: "cargo"
     directory: "/"
     schedule:
       interval: "daily"
-    # Create a group of dependencies to be updated together in one pull request
     groups:
-      # Name of the group
       gtk4:
         update-types:
           - "major"
@@ -69,3 +24,9 @@ updates:
           - "gtk4-sys"
           - "gtk4"
           - "gio"
+
+  # Standalone example crate
+  - package-ecosystem: "cargo"
+    directory: "/gtk4-layer-shell/examples/relm4"
+    schedule:
+      interval: "daily"
