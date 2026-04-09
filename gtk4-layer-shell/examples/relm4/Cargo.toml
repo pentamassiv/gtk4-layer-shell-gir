@@ -9,4 +9,4 @@ publish = false
 [dependencies]
 gtk4 = "0.10"
 gtk4-layer-shell = "0.7.0"
-relm4 = "0.10"
+relm4 = "0.11"
