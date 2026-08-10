@@ -82,7 +82,7 @@ fn main() {
         // Part that is specific to use gtk4-layer-shell ends
         // #################################
 
-        window.show();
+        window.present();
     });
 
     application.run();
