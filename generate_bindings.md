@@ -18,7 +18,9 @@ cd gir
 cargo install --path .
 cd ..
 ```
-If you regenerate the binding, because you have a new version of the gir file, replace the old file with the new version. Now you can generate, build and test the bindings.
+If you regenerate the binding because upstream released a new version, build that **release tag** of [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell) with introspection enabled, then copy the installed `Gtk4LayerShell-1.0.gir` and `Gtk4SessionLock-1.0.gir` into this repo root (do not use unreleased `main` APIs).
+
+Now you can generate, build and test the bindings.
 ```bash
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 # Change the directory to the folder of the sys crate you want to rebuild

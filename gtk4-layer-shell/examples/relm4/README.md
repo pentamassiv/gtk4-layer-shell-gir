@@ -1,6 +1,6 @@
 # relm4 Example
 
-This is a standalone relm4 integration example for `gtk4-layer-shell`.
+This is a standalone relm4 integration example for `gtk4-layer-shell`. It is a Rust-ecosystem demo, not a port of an upstream C example.
 
 It is intentionally kept outside the workspace so it does not block core crate CI/release.
 
