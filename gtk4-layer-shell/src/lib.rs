@@ -284,10 +284,16 @@ pub trait LayerShell: IsA<gtk::Window> {
     /// # Returns
     ///
     /// The underlying layer surface Wayland object
+    ///
+    /// # Safety
+    ///
+    /// The pointer is owned by gtk4-layer-shell and must not be freed. It remains
+    /// valid only while `self` is initialized as a layer surface; using it after
+    /// the surface is destroyed is undefined behavior.
     #[doc(alias = "gtk_layer_get_zwlr_layer_surface_v1")]
     #[doc(alias = "get_zwlr_layer_surface_v1")]
-    fn zwlr_layer_surface_v1(&self) -> Option<*mut ffi::zwlr_layer_surface_v1> {
-        zwlr_layer_surface_v1(self)
+    unsafe fn zwlr_layer_surface_v1(&self) -> Option<std::ptr::NonNull<ffi::zwlr_layer_surface_v1>> {
+        unsafe { zwlr_layer_surface_v1(self) }
     }
 
     /// ## `window`
