@@ -128,11 +128,11 @@ fn activate(app: &gtk::Application) {
     lock.connect_monitor(clone!(
         #[weak]
         app,
-        move |lock, monitor| on_monitor_present(&lock, monitor.clone(), &app)
+        move |lock, monitor| on_monitor_present(lock, monitor.clone(), &app)
     ));
 
     // Note that you can't create windows while display is locked, but doing it here is fine
-    create_control_window(&lock, &app);
+    create_control_window(&lock, app);
 
     // This actually locks the session, the session may or may not be done locking by the time it returns
     lock.lock();
