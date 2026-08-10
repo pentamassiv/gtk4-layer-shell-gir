@@ -12,6 +12,8 @@ This crate allows building desktop shell components such as panels, notification
 ## Dependencies
 You need to have `gtk4` and `gtk4-layer-shell` (the C library) installed on your system. `gtk4-layer-shell` version 1.1.0 or higher is needed to use `gtk4-session-lock`. If you want to use [gtk4-layer-shell](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell) and [gtk4-session-lock](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-session-lock) together in a project, make sure to use the same .so file of `gtk4-layer-shell` for both.
 
+If your project also links `libwayland-client`, make sure `gtk4-layer-shell` is linked **before** it (the library shims some Wayland entry points). See [linking.md](https://github.com/wmww/gtk4-layer-shell/blob/main/linking.md) upstream for details.
+
 If your distribution does not provide a current enough version of `gtk4-layer-shell`, you can [build it from source](https://github.com/wmww/gtk4-layer-shell#building-from-source). If you did that, you might also have to set the following two environment variables:
 ```bash
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
