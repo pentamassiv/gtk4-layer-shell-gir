@@ -7,7 +7,7 @@
 use gtk; // Required for the documentation to build without warnings
 
 use gtk::prelude::IsA;
-use gtk4_layer_shell_sys as ffi;
+pub use gtk4_layer_shell_sys as ffi;
 
 macro_rules! assert_initialized_main_thread {
     () => {
