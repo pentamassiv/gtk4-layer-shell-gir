@@ -28,8 +28,8 @@ macro_rules! skip_assert_initialized {
 
 mod auto;
 pub use auto::{
-    functions::is_supported, functions::major_version, functions::micro_version,
-    functions::minor_version, functions::protocol_version, Edge, KeyboardMode, Layer,
+    Edge, KeyboardMode, Layer, functions::is_supported, functions::major_version,
+    functions::micro_version, functions::minor_version, functions::protocol_version,
 };
 
 mod manual;
@@ -292,7 +292,9 @@ pub trait LayerShell: IsA<gtk::Window> {
     /// the surface is destroyed is undefined behavior.
     #[doc(alias = "gtk_layer_get_zwlr_layer_surface_v1")]
     #[doc(alias = "get_zwlr_layer_surface_v1")]
-    unsafe fn zwlr_layer_surface_v1(&self) -> Option<std::ptr::NonNull<ffi::zwlr_layer_surface_v1>> {
+    unsafe fn zwlr_layer_surface_v1(
+        &self,
+    ) -> Option<std::ptr::NonNull<ffi::zwlr_layer_surface_v1>> {
         unsafe { zwlr_layer_surface_v1(self) }
     }
 
