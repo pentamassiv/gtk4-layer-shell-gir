@@ -106,7 +106,7 @@ pub fn layer(window: &impl IsA<gtk::Window>) -> Layer {
 #[doc(alias = "gtk_layer_get_major_version")]
 #[doc(alias = "get_major_version")]
 pub fn major_version() -> u32 {
-    assert_initialized_main_thread!();
+    skip_assert_initialized!();
     unsafe {
         ffi::gtk_layer_get_major_version()
     }
@@ -136,7 +136,7 @@ pub fn margin(window: &impl IsA<gtk::Window>, edge: Edge) -> i32 {
 #[doc(alias = "gtk_layer_get_micro_version")]
 #[doc(alias = "get_micro_version")]
 pub fn micro_version() -> u32 {
-    assert_initialized_main_thread!();
+    skip_assert_initialized!();
     unsafe {
         ffi::gtk_layer_get_micro_version()
     }
@@ -149,7 +149,7 @@ pub fn micro_version() -> u32 {
 #[doc(alias = "gtk_layer_get_minor_version")]
 #[doc(alias = "get_minor_version")]
 pub fn minor_version() -> u32 {
-    assert_initialized_main_thread!();
+    skip_assert_initialized!();
     unsafe {
         ffi::gtk_layer_get_minor_version()
     }
@@ -221,12 +221,6 @@ pub fn is_respect_close(window: &impl IsA<gtk::Window>) -> bool {
         from_glib(ffi::gtk_layer_get_respect_close(window.as_ref().to_glib_none().0))
     }
 }
-
-//#[doc(alias = "gtk_layer_get_zwlr_layer_surface_v1")]
-//#[doc(alias = "get_zwlr_layer_surface_v1")]
-//pub fn zwlr_layer_surface_v1(window: &impl IsA<gtk::Window>) -> /*Unimplemented*/Option<Basic: Pointer> {
-//    unsafe { TODO: call ffi:gtk_layer_get_zwlr_layer_surface_v1() }
-//}
 
 /// Set the `window` up to be a layer surface once it is mapped. this must be called before
 /// the `window` is realized.

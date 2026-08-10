@@ -23,3 +23,7 @@ status = "generate"
     [[object.function]]
     name = "get_zwlr_layer_surface_v1"
     manual = true
+    # Library version getters do not need GTK to be initialized.
+    [[object.function]]
+    pattern = "get_(major|minor|micro)_version"
+    assertion = "skip"
