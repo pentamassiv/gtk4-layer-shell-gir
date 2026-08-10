@@ -1,7 +1,7 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![deny(warnings)]
 
-use gtk4_session_lock_sys as ffi;
+pub use gtk4_session_lock_sys as ffi;
 
 #[allow(unused_imports)]
 #[allow(clippy::single_component_path_imports)]
