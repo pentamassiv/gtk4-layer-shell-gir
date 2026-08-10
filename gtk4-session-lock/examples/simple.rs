@@ -5,7 +5,7 @@ use gtk4_session_lock::Instance as SessionLockInstance;
 
 fn on_session_locked(_: &SessionLockInstance) {
     println!("Session locked successfully");
-}       
+}
 
 fn on_session_lock_failed(app: &gtk::Application) {
     eprintln!("The session could not be locked");

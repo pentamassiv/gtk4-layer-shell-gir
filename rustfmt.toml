@@ -1,0 +1,13 @@
+# Format hand-written code only. Gir-generated sources keep upstream style.
+ignore = [
+    "gir",
+    "gir-files",
+    "gtk4-layer-shell/src/auto",
+    "gtk4-layer-shell-sys/src/lib.rs",
+    "gtk4-layer-shell-sys/build.rs",
+    "gtk4-layer-shell-sys/tests/abi.rs",
+    "gtk4-session-lock/src/auto",
+    "gtk4-session-lock-sys/src/lib.rs",
+    "gtk4-session-lock-sys/build.rs",
+    "gtk4-session-lock-sys/tests/abi.rs",
+]
