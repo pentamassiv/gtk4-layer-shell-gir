@@ -13,7 +13,13 @@ generate = [
     "Gtk4LayerShell.Edge",
     "Gtk4LayerShell.Layer",
     "Gtk4LayerShell.KeyboardMode",
-    "Gtk4LayerShell.*",
 ]
 
 manual = ["Gtk.Window", "Gdk.Monitor"]
+
+[[object]]
+name = "Gtk4LayerShell.*"
+status = "generate"
+    [[object.function]]
+    name = "get_zwlr_layer_surface_v1"
+    manual = true
