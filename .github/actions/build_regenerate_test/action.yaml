@@ -14,7 +14,8 @@ runs:
       shell: bash
       run: |
         set -euo pipefail
-        cargo fmt --all -- --check
+        # rustfmt.toml `ignore` needs nightly (unstable_features).
+        cargo +nightly fmt --all -- --check
 
     - name: Build and test sys crates
       shell: bash

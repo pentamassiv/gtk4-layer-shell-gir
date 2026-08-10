@@ -1,4 +1,8 @@
 # Format hand-written code only. Gir-generated sources keep upstream style.
+# `ignore` requires nightly rustfmt (`unstable_features`). Use:
+#   cargo +nightly fmt
+# CI and the workspace editor settings do the same.
+unstable_features = true
 ignore = [
     "gir",
     "gir-files",

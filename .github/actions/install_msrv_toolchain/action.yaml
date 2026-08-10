@@ -3,9 +3,9 @@ description: "Install the Rust toolchain from workspace Cargo.toml rust-version 
 
 inputs:
   components:
-    description: "Comma-separated rustup components"
+    description: "Comma-separated rustup components for the MSRV toolchain"
     required: false
-    default: "rustfmt, clippy"
+    default: "clippy"
 
 runs:
   using: "composite"
@@ -27,3 +27,9 @@ runs:
       with:
         toolchain: ${{ steps.msrv.outputs.version }}
         components: ${{ inputs.components }}
+
+    # rustfmt.toml `ignore` is unstable; install nightly rustfmt without changing the
+    # default toolchain away from MSRV.
+    - name: Install nightly rustfmt
+      shell: bash
+      run: rustup toolchain install nightly --profile minimal --component rustfmt
