@@ -1,3 +1,5 @@
+use std::ptr::NonNull;
+
 use glib::object::IsA;
 use glib::translate::*;
 use gtk4_layer_shell_sys as ffi;
@@ -8,19 +10,22 @@ use gtk4_layer_shell_sys as ffi;
 /// # Returns
 ///
 /// The underlying layer surface Wayland object
+///
+/// # Safety
+///
+/// The pointer is owned by gtk4-layer-shell and must not be freed. It remains
+/// valid only while `window` is initialized as a layer surface; using it after
+/// the surface is destroyed is undefined behavior.
 #[doc(alias = "gtk_layer_get_zwlr_layer_surface_v1")]
 #[doc(alias = "get_zwlr_layer_surface_v1")]
-pub fn zwlr_layer_surface_v1(
+pub unsafe fn zwlr_layer_surface_v1(
     window: &impl IsA<gtk::Window>,
-) -> Option<*mut ffi::zwlr_layer_surface_v1> {
+) -> Option<NonNull<ffi::zwlr_layer_surface_v1>> {
     assert_initialized_main_thread!();
 
     unsafe {
-        let ptr = ffi::gtk_layer_get_zwlr_layer_surface_v1(window.as_ref().to_glib_none().0);
-        if ptr.is_null() {
-            None
-        } else {
-            Some(ptr)
-        }
+        NonNull::new(ffi::gtk_layer_get_zwlr_layer_surface_v1(
+            window.as_ref().to_glib_none().0,
+        ))
     }
 }
