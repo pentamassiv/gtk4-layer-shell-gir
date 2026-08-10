@@ -369,7 +369,13 @@ compositor or 0 if the protocol is not supported.</doc>
       <return-value transfer-ownership="none" nullable="1">
         <doc xml:space="preserve"
              filename="include/gtk4-layer-shell.h"
-             line="154">The underlying layer surface Wayland object</doc>
+             line="154">The underlying layer surface Wayland object
+
+# Safety
+
+The pointer is owned by gtk4-layer-shell and must not be freed. It remains
+valid only while `window` is initialized as a layer surface; using it after
+the surface is destroyed is undefined behavior.</doc>
         <type name="gpointer" c:type="zwlr_layer_surface_v1*"/>
       </return-value>
       <parameters>
