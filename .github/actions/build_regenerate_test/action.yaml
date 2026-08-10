@@ -10,13 +10,21 @@ runs:
         set -euo pipefail
         export PATH=$PATH:/github/home/.cargo/bin
 
+        # Newer gir logs parse errors and continues. Gtk-4.0.gir has an empty
+        # <type/> on the non-introspectable GtkPrinter:backend property, which
+        # produces this harmless message whenever Gtk-4.0.gir is loaded.
+        filter_gir_noise() {
+          sed '/Skipping property "backend": Missing name attribute on <type> element/d' \
+            | sed '/^[[:space:]]*$/d'
+        }
+
         folders=("gtk4-layer-shell" "gtk4-session-lock")
         for folder in "${folders[@]}"; do
           echo "[SYS] Processing crate: ${folder}-sys"
           cd "${folder}-sys"
 
           echo "🔍 Checking gir output..."
-          gir_output=$(gir -o . 2>&1 || true)
+          gir_output=$(gir -o . 2>&1 | filter_gir_noise || true)
           if [[ -n "$gir_output" ]]; then
             echo "::error::[SYS ${folder}] gir -o produced output"
             echo "$gir_output"
@@ -44,6 +52,13 @@ runs:
       run: |
         set -euo pipefail
         export PATH=$PATH:/github/home/.cargo/bin
+
+        # See comment in the sys crate step above.
+        filter_gir_noise() {
+          sed '/Skipping property "backend": Missing name attribute on <type> element/d' \
+            | sed '/^[[:space:]]*$/d'
+        }
+
         folders=("gtk4-layer-shell" "gtk4-session-lock")
         for folder in "${folders[@]}"; do
           echo "[WRAPPER] Processing crate: ${folder}"
@@ -51,7 +66,7 @@ runs:
 
           echo "🔍 Generating code"
           echo "::group::gir -o output"
-          gir_output=$(gir -o . 2>&1 || true)
+          gir_output=$(gir -o . 2>&1 | filter_gir_noise || true)
           echo "$gir_output"
           echo "::endgroup::"
           if [[ -n "$gir_output" ]]; then
@@ -61,7 +76,7 @@ runs:
 
           echo "🔍 Checking if some code was not generated"
           echo "::group::gir not_bound output"
-          not_bound_output=$(gir -o . -m not_bound 2>&1 || true)
+          not_bound_output=$(gir -o . -m not_bound 2>&1 | filter_gir_noise || true)
           echo "$not_bound_output"
           echo "::endgroup::"
           if [[ -n "$not_bound_output" ]]; then
@@ -71,7 +86,7 @@ runs:
 
           echo "🔍 Generating docs"
           echo "::group::gir docs output"
-          doc_output=$(gir -c Gir.toml --doc-target-path docs.md -m doc 2>&1 || true)
+          doc_output=$(gir -c Gir.toml --doc-target-path docs.md -m doc 2>&1 | filter_gir_noise || true)
           echo "$doc_output"
           echo "::endgroup::"
           if [[ -n "$doc_output" ]]; then
