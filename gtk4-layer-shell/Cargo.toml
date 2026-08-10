@@ -21,10 +21,7 @@ default = []
 v1_3 = ["gtk4-layer-shell-sys/v1_3"]
 
 [dependencies]
-libc.workspace = true
-bitflags.workspace = true
 glib.workspace = true
-glib-sys.workspace = true
 gdk.workspace = true
 gtk.workspace = true
 gtk4-layer-shell-sys.workspace = true
