@@ -1,9 +1,21 @@
 name: "Build, regenerate and test"
 description: "Builds the code, uses gir to regenerate the bindings and runs the tests"
 
+inputs:
+  fail_on_dirty:
+    description: "Fail if gir regenerate changes tracked sources (use on PR/push CI; disable on update bots)"
+    required: false
+    default: "false"
+
 runs:
   using: "composite"
   steps:
+    - name: Check formatting
+      shell: bash
+      run: |
+        set -euo pipefail
+        cargo fmt --all -- --check
+
     - name: Build and test sys crates
       shell: bash
       run: |
@@ -99,7 +111,6 @@ runs:
           rustdoc-stripper -s -n
           rustdoc-stripper -g -o docs.md
 
-          
           echo "::group::📦 Running cargo update..."
           cargo update
           echo "::endgroup::"
@@ -118,3 +129,28 @@ runs:
           cd ..
         done
         cargo build --manifest-path gtk4-layer-shell/examples/relm4/Cargo.toml
+
+    - name: Clippy
+      shell: bash
+      run: |
+        set -euo pipefail
+        cargo clippy --workspace --all-features --all-targets -- -D warnings
+
+    - name: Fail if regenerate changed committed sources
+      if: inputs.fail_on_dirty == 'true'
+      shell: bash
+      run: |
+        set -euo pipefail
+        # versions.txt embeds checkout dirtiness of parent/gir; ignore it.
+        if ! git diff --quiet HEAD -- . \
+          ':(exclude)gir' \
+          ':(exclude)gir-files' \
+          ':(exclude)*/src/auto/versions.txt'; then
+          echo "::error::gir regenerate changed tracked sources; commit the updated bindings"
+          git --no-pager diff -- . \
+            ':(exclude)gir' \
+            ':(exclude)gir-files' \
+            ':(exclude)*/src/auto/versions.txt'
+          exit 1
+        fi
+        echo "Regenerated sources match the commit (ignoring versions.txt)."

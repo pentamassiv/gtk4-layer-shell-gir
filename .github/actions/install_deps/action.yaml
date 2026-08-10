@@ -11,7 +11,7 @@ runs:
     - name: Hold back grub-efi-amd64-signed # TODO: Remove temporary fix
       shell: bash
       run: sudo apt-mark hold grub-efi-amd64-signed
-      
+
     - name: Upgrade system
       shell: bash
       run: sudo apt-get upgrade -y
@@ -31,6 +31,10 @@ runs:
           sudo ldconfig
           cd ..
           cd gtk4-layer-shell-gir
+          # Persist for later steps (plain `export` in a step does not).
+          echo "PKG_CONFIG_PATH=/usr/local/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}" >> "$GITHUB_ENV"
+          echo "LD_LIBRARY_PATH=/usr/local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" >> "$GITHUB_ENV"
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
     - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: |

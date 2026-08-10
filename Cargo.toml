@@ -10,7 +10,7 @@ resolver = "2"
 
 [workspace.package]
 authors = ["pentamassiv <pentamassiv@posteo.de>"]
-rust-version = "1.85"
+rust-version = "1.92"
 edition = "2024"
 license = "MIT"
 
