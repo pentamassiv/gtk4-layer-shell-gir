@@ -41,7 +41,7 @@ pub trait LayerShell: IsA<gtk::Window> {
     /// exclusive zone to 0 or any other fixed value.
     ///
     /// NOTE: you can control the auto exclusive zone by changing the margin on the non-anchored
-    /// edge. This behavior is specific to gtk-layer-shell and not part of the underlying protocol
+    /// edge. This behavior is specific to gtk4-layer-shell and not part of the underlying protocol
     /// ## `window`
     /// A layer surface.
     #[doc(alias = "gtk_layer_auto_exclusive_zone_enable")]
