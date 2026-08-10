@@ -6,22 +6,8 @@
 #[allow(clippy::single_component_path_imports)]
 use gtk; // Required for the documentation to build without warnings
 
-use glib::translate::{FromGlib, TryFromGlib};
 use gtk::prelude::IsA;
 use gtk4_layer_shell_sys as ffi;
-
-impl TryFromGlib<ffi::GtkLayerShellLayer> for Layer {
-    type Error = glib::translate::GlibNoneError;
-
-    unsafe fn try_from_glib(value: ffi::GtkLayerShellLayer) -> Result<Self, Self::Error> {
-        let layer = unsafe { Self::from_glib(value) };
-        // If we got an unknown variant, return an error; otherwise, return the value.
-        match layer {
-            Layer::__Unknown(_) => Err(glib::translate::GlibNoneError),
-            _ => Ok(layer),
-        }
-    }
-}
 
 macro_rules! assert_initialized_main_thread {
     () => {
