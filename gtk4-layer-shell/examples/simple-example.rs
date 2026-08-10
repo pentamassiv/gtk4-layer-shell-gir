@@ -2,7 +2,7 @@ use gio::prelude::*;
 use gtk::prelude::*;
 use gtk4_layer_shell::{Edge, Layer, LayerShell};
 
-// https://github.com/wmww/gtk-layer-shell/blob/master/examples/simple-example.c
+// https://github.com/wmww/gtk4-layer-shell/blob/v1.3.0/examples/simple-example.c
 fn activate(application: &gtk::Application) {
     // Create a normal GTK window however you like
     let window = gtk::ApplicationWindow::new(application);
@@ -10,23 +10,28 @@ fn activate(application: &gtk::Application) {
     // Before the window is first realized, set it up to be a layer surface
     window.init_layer_shell();
 
-    // Display above normal windows
-    window.set_layer(Layer::Overlay);
+    // Order below normal windows
+    window.set_layer(Layer::Top);
 
     // Push other windows out of the way
     window.auto_exclusive_zone_enable();
+
+    // We don't need to get keyboard input
+    // window.set_keyboard_mode(KeyboardMode::None); // None is default
 
     // The margins are the gaps around the window's edges
     // Margins and anchors can be set like this...
     window.set_margin(Edge::Left, 40);
     window.set_margin(Edge::Right, 40);
     window.set_margin(Edge::Top, 20);
+    window.set_margin(Edge::Bottom, 0); // 0 is default
 
     // ... or like this
     // Anchors are if the window is pinned to each edge of the output
+    // Edge enum order matches GTK_LAYER_SHELL_EDGE_*: Left, Right, Top, Bottom
     let anchors = [
         (Edge::Left, true),
-        (Edge::Right, true),
+        (Edge::Right, false),
         (Edge::Top, false),
         (Edge::Bottom, true),
     ];
@@ -37,13 +42,20 @@ fn activate(application: &gtk::Application) {
 
     // Set up a widget
     let label = gtk::Label::new(Some(""));
-    label.set_markup("<span font_desc=\"20.0\">GTK Layer Shell example!</span>");
+    label.set_markup(
+        "<span font_desc=\"100.0\">\
+            GTK Layer\nShell example!\
+        </span>",
+    );
     window.set_child(Some(&label));
-    window.show()
+    window.present();
 }
 
 fn main() {
-    let application = gtk::Application::new(Some("sh.wmww.gtk-layer-example"), Default::default());
+    let application = gtk::Application::new(
+        Some("com.github.wmww.gtk4-layer-shell.example"),
+        Default::default(),
+    );
 
     application.connect_activate(|app| {
         activate(app);

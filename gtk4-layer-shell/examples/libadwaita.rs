@@ -1,4 +1,5 @@
-// This example is copied from https://gitlab.gnome.org/World/Rust/libadwaita-rs/-/blob/master/libadwaita/examples/hello-world.rs
+// Rust-only demo (not an upstream gtk4-layer-shell example).
+// Based on https://gitlab.gnome.org/World/Rust/libadwaita-rs/-/blob/master/libadwaita/examples/hello-world.rs
 // The only part that is specific to the usage of gtk4-layer-shell is encased by comments
 
 use libadwaita as adw;

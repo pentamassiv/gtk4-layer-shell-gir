@@ -33,6 +33,11 @@ This repo contains the following crates:
 
 The crates are language bindings to the underlying C library [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell). Feature development is done upstream. The crates in this repo are automatically generated from their .gir files ([Gtk4LayerShell](Gtk4LayerShell-1.0.gir), [GTK4SessionLock](Gtk4SessionLock-1.0.gir)). For details on how to use the crates, have a look at the individual crate's README, which can be found in their respective folders. The crates are GTK4 only.
 
+## Upstream version
+Bindings and examples track the latest **released** upstream tag. Unreleased APIs on upstream `main` are not bound until they ship in a release.
+
+The `simple-example` and session-lock `simple` examples are Rust ports of the upstream C examples. Extra demos such as `libadwaita` and `relm4` are Rust-only and are not upstream ports.
+
 ## Dependencies
 You need to have `gtk4` and `gtk4-layer-shell` (the C library) installed on your system to use the crates in this repo. `gtk4-layer-shell` version 1.1.0 or higher is needed if you want to use `gtk4-session-lock`.
 If you want to use [gtk4-layer-shell](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-layer-shell) and [gtk4-session-lock](https://github.com/pentamassiv/gtk4-layer-shell-gir/tree/main/gtk4-session-lock) together in a project, make sure to use the same .so file of `gtk4-layer-shell` for both.
