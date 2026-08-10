@@ -5,7 +5,7 @@ use gtk4_session_lock::Instance as SessionLockInstance;
 
 fn on_session_locked(_: &SessionLockInstance) {
     println!("Session locked successfully");
-}
+}       
 
 fn on_session_lock_failed(app: &gtk::Application) {
     eprintln!("The session could not be locked");
@@ -139,6 +139,10 @@ fn activate(app: &gtk::Application) {
 }
 
 fn main() {
+    // is_supported() asserts GTK is initialized. Application::new only does that
+    // on the startup signal (during run), so call init explicitly.
+    gtk::init().unwrap();
+
     if !gtk4_session_lock::is_supported() {
         println!("Session lock not supported");
         std::process::exit(1);
