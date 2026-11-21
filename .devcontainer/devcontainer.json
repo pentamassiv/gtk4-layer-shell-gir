@@ -1,0 +1,28 @@
+{
+  "name": "Arch Linux Agent Sandbox",
+
+  "image": "localhost/arch-agent-sandbox:latest",
+
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+
+  "mounts": [
+    "source=${localWorkspaceFolder}/.devcontainer,target=/workspace/.devcontainer,type=bind,readonly",
+    "source=${localWorkspaceFolder}/.git/config,target=/workspace/.git/config,type=bind,readonly",
+    "source=${localWorkspaceFolder}/.git/hooks,target=/workspace/.git/hooks,type=bind,readonly"
+  ],
+
+  "containerUser": "dev",
+  "remoteUser": "dev",
+  "updateRemoteUserUID": true,
+
+  "init": true,
+
+  "initializeCommand": "bash .devcontainer/podman-gc.sh",
+
+  "runArgs": [
+    "--cap-drop=NET_RAW"
+  ],
+
+  "shutdownAction": "stopContainer"
+}
