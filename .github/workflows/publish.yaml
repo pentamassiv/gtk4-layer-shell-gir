@@ -25,24 +25,58 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - name: Validate inputs
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+          CRATE_NAME: ${{ github.event.inputs.crate_name }}
+        run: |
+          set -euo pipefail
+          if ! printf '%s' "$VERSION" | grep -Ezq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$'; then
+            echo "::error::Invalid version '$VERSION'. Must be a valid semver (e.g. 0.8.2)."
+            exit 1
+          fi
+          case "$CRATE_NAME" in
+            gtk4-layer-shell-sys|gtk4-layer-shell|gtk4-session-lock-sys|gtk4-session-lock) ;;
+            *)
+              echo "::error::Invalid crate_name '$CRATE_NAME'."
+              exit 1
+              ;;
+          esac
       - uses: actions/checkout@v7.0.1
       - uses: $/.github/actions/install_deps
       - uses: $/.github/actions/install_msrv_toolchain
       - name: Get the version number
         id: previous_version
+        env:
+          CRATE_NAME: ${{ github.event.inputs.crate_name }}
         run: |
-          echo "PREVIOUS_VERSION=$(grep -o -m 1 -P '(?<=version = ").*(?=")' ./${{ github.event.inputs.crate_name }}/Cargo.toml)" >> $GITHUB_OUTPUT
+          echo "PREVIOUS_VERSION=$(grep -o -m 1 -P '(?<=version = ").*(?=")' "./${CRATE_NAME}/Cargo.toml")" >> "$GITHUB_OUTPUT"
       - name: Output the version numbers
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+          PREVIOUS_VERSION: ${{ steps.previous_version.outputs.PREVIOUS_VERSION }}
         run: |
-          echo "Previous version: ${{ steps.previous_version.outputs.PREVIOUS_VERSION }}"
-          echo "New version: ${{ github.event.inputs.version }}"
+          echo "Previous version: ${PREVIOUS_VERSION}"
+          echo "New version: ${VERSION}"
       - name: Bump version number in Cargo.toml
-        run: sed -i '0,/version = "${{ steps.previous_version.outputs.PREVIOUS_VERSION }}"/{s//version = "${{ github.event.inputs.version }}"/}' ./${{ github.event.inputs.crate_name }}/Cargo.toml
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+          PREVIOUS_VERSION: ${{ steps.previous_version.outputs.PREVIOUS_VERSION }}
+          CRATE_NAME: ${{ github.event.inputs.crate_name }}
+        run: sed -i "0,/version = \"${PREVIOUS_VERSION}\"/{s||version = \"${VERSION}\"|}" "./${CRATE_NAME}/Cargo.toml"
       - name: Bump version of badge in README.md
-        run: sed -i 's/\(${{ github.event.inputs.crate_name }}\/\)${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/\1${{ github.event.inputs.version }}/g' ./${{ github.event.inputs.crate_name }}/README.md
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+          PREVIOUS_VERSION: ${{ steps.previous_version.outputs.PREVIOUS_VERSION }}
+          CRATE_NAME: ${{ github.event.inputs.crate_name }}
+        run: sed -i "s|${CRATE_NAME}/${PREVIOUS_VERSION}|${CRATE_NAME}/${VERSION}|g" "./${CRATE_NAME}/README.md"
 
       - name: Bump version of badge in repo README.md
-        run: sed -i 's/\(${{ github.event.inputs.crate_name }}\/\)${{ steps.previous_version.outputs.PREVIOUS_VERSION }}/\1${{ github.event.inputs.version }}/g' ./README.md
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+          PREVIOUS_VERSION: ${{ steps.previous_version.outputs.PREVIOUS_VERSION }}
+          CRATE_NAME: ${{ github.event.inputs.crate_name }}
+        run: sed -i "s|${CRATE_NAME}/${PREVIOUS_VERSION}|${CRATE_NAME}/${VERSION}|g" "./README.md"
 
       - name: Commit the changes to repo
         env:
