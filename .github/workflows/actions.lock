@@ -6,15 +6,15 @@ workflows:
     '.github/workflows/build.yaml':
         - 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9'
         - 'actions/checkout@v7.0.1'
-        - 'dtolnay/rust-toolchain@6c977a6ca4077a0ceb28ffbe03f59d46e9ac8772'
+        - 'dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc'
     '.github/workflows/publish.yaml':
         - 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9'
         - 'actions/checkout@v7.0.1'
-        - 'dtolnay/rust-toolchain@6c977a6ca4077a0ceb28ffbe03f59d46e9ac8772'
+        - 'dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc'
     '.github/workflows/update.yaml':
         - 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9'
         - 'actions/checkout@v7.0.1'
-        - 'dtolnay/rust-toolchain@6c977a6ca4077a0ceb28ffbe03f59d46e9ac8772'
+        - 'dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc'
 dependencies:
     'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9':
         ref: 'v6.1.0'
@@ -26,8 +26,8 @@ dependencies:
         commit: 'sha1-3d3c42e5aac5ba805825da76410c181273ba90b1'
         owner_id: 44036562
         repo_id: 197814629
-    'dtolnay/rust-toolchain@6c977a6ca4077a0ceb28ffbe03f59d46e9ac8772':
+    'dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc':
         ref: 'master'
-        commit: 'sha1-6c977a6ca4077a0ceb28ffbe03f59d46e9ac8772'
+        commit: 'sha1-df2a88e9fe4098bad09cb42c3dec7187f15861fc'
         owner_id: 1940490
         repo_id: 260749683
