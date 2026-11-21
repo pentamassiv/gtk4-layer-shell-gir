@@ -109,8 +109,12 @@ runs:
 
           echo "📚 Installing rustdoc-stripper..."
           cargo install rustdoc-stripper --force
-          rustdoc-stripper -s -n
-          rustdoc-stripper -g -o docs.md
+          # Only src/auto contains generated code. Docs in src/manual.rs and
+          # src/lib.rs are hand-written and must not be stripped/regenerated
+          # from the GIR, otherwise hand-written sections (e.g. `# Safety`)
+          # are dropped.
+          rustdoc-stripper -s -n -d src/auto
+          rustdoc-stripper -g -o docs.md -d src/auto
 
           echo "::group::📦 Running cargo update..."
           cargo update
