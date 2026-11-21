@@ -1,7 +1,9 @@
-name: "Update gir and all gir-files"
+name: Update bindings
 
 permissions:
   contents: write
+  pull-requests: write
+
 on:
   workflow_dispatch:
   schedule:
@@ -11,44 +13,94 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           submodules: "true"
+
+      - name: Determine latest upstream versions
+        id: versions
+        run: |
+          set -euo pipefail
+          latest_tag() {
+            local tag
+            tag="$(git ls-remote --tags --refs "$1" \
+              | sed -E 's#^.*refs/tags/##; s#\^\{\}##' \
+              | grep -E '^v?[0-9]+\.[0-9]+\.[0-9]+$' \
+              | sort -V \
+              | tail -n1)"
+            [[ -n "$tag" ]] || { echo "::error::No stable tag found for $1"; return 1; }
+            printf '%s' "$tag"
+          }
+          echo "layer_shell=$(latest_tag https://github.com/wmww/gtk4-layer-shell.git)" >> "$GITHUB_OUTPUT"
+          echo "gir=$(latest_tag https://github.com/gtk-rs/gir.git)" >> "$GITHUB_OUTPUT"
+          echo "gir_files=$(latest_tag https://github.com/gtk-rs/gir-files.git)" >> "$GITHUB_OUTPUT"
+
+      - name: Record the gtk4-layer-shell version
+        run: echo "${{ steps.versions.outputs.layer_shell }}" > .github/gtk4-layer-shell-version
+
       - uses: $/.github/actions/install_deps
       - uses: $/.github/actions/install_msrv_toolchain
-      ## Update the submodules
-      - name: Update submodules
+
+      - name: Update gir and gir-files submodules to the latest tags
         run: |
-          git submodule update --remote
-      ## Update the gir submodule and install the new version
+          set -euo pipefail
+          git -C gir fetch --tags origin
+          git -C gir checkout "${{ steps.versions.outputs.gir }}"
+          git -C gir-files fetch --tags origin
+          git -C gir-files checkout "${{ steps.versions.outputs.gir_files }}"
+
+      - name: Replace the .gir files from the built gtk4-layer-shell
+        run: |
+          set -euo pipefail
+          cp /usr/local/share/gir-1.0/Gtk4LayerShell-1.0.gir ./Gtk4LayerShell-1.0.gir
+          cp /usr/local/share/gir-1.0/Gtk4SessionLock-1.0.gir ./Gtk4SessionLock-1.0.gir
+
       - name: Install gir
         working-directory: ./gir
         run: cargo install --force --path .
+
       - uses: $/.github/actions/build_regenerate_test
         with:
           fail_on_dirty: "false"
-      - name: Commit updated code + submodules
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Detect changes, ignoring gir/, gir-files/, and versions.txt
-          if git diff --quiet HEAD -- . \
-            ':(exclude)gir' \
-            ':(exclude)gir-files' \
-            ':(exclude)*/src/auto/versions.txt'; then
-            echo "No relevant changes to commit."
+      - name: Open a pull request if the bindings changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          # Stage everything we might commit.
+          git add -A
+
+          # Drop pure noise (version-number bookkeeping).
+          git reset -q -- '*/src/auto/versions.txt' || true
+
+          # A tool update that regenerates identical code is not worth a PR;
+          # only open one when bindings or their inputs actually changed.
+          if git diff --cached --quiet -- . ':(exclude)gir' ':(exclude)gir-files'; then
+            echo "No meaningful changes; skipping the pull request."
             exit 0
           fi
 
-          # Something else changed → commit everything
-          git add -A
-          git commit -m "Automatically updated generated code and submodules"
-          git push
+          branch="update-bindings"
+          git checkout -B "${branch}"
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -m "Update bindings for the latest upstream releases"
+          git push --force -u origin "${branch}"
 
+          body="Updated to the latest upstream releases: gtk4-layer-shell ${{ steps.versions.outputs.layer_shell }}, gir ${{ steps.versions.outputs.gir }}, gir-files ${{ steps.versions.outputs.gir_files }}"
 
-
-
+          # Only skip when there is an *open* PR; a merged/closed one must not
+          # block the next update from opening a fresh PR.
+          open_pr="$(gh pr list --head "${branch}" --state open --json number --jq '.[0].number // empty')"
+          if [ -n "${open_pr}" ]; then
+            echo "An open pull request (#${open_pr}) for ${branch} already exists; the force-push updated it."
+          else
+            gh pr create --base main --head "${branch}" \
+              --title "Update bindings for the latest upstream releases" \
+              --body "${body}"
+          fi
