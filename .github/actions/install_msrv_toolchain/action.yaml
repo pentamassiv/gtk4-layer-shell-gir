@@ -23,7 +23,7 @@ runs:
         echo "version=${version}" >> "${GITHUB_OUTPUT}"
         echo "Using MSRV ${version} from Cargo.toml"
 
-    - uses: dtolnay/rust-toolchain@6c977a6ca4077a0ceb28ffbe03f59d46e9ac8772 # master branch
+    - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc # master branch
       with:
         toolchain: ${{ steps.msrv.outputs.version }}
         components: ${{ inputs.components }}
