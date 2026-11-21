@@ -18,6 +18,12 @@ updates:
     schedule:
       interval: "daily"
 
+  # Maintain dependencies for install_msrv_toolchain
+  - package-ecosystem: "github-actions"
+    directory: "/.github/actions/install_msrv_toolchain"
+    schedule:
+      interval: "daily"
+
   # Maintain dependencies for GitHub Workflows
   - package-ecosystem: "github-actions"
     directory: "/.github/workflows"
